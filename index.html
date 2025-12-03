@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TestaIA — Testes Automatizados com Inteligência</title>
+  <meta name="description" content="TestaIA: plataforma de testes automatizados com IA para PMEs. Detecte bugs, gere relatórios e libere software com confiança." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="TestaIA — Testes Automatizados com Inteligência" />
+  <meta property="og:description" content="Plataforma de testes automatizados com IA para PMEs: sem código, rápido e confiável." />
+  <meta property="og:image" content="https://source.unsplash.com/1200x630/?technology,code" />
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Pequenas customizações */
+    .gradient-hero { background: linear-gradient(90deg,#0f172a 0%, #0ea5a4 100%); }
+  </style>
+</head>
+<body class="antialiased text-gray-800">
+  <!-- NAV -->
+  <header class="bg-white shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-white font-bold">T</div>
+        <span class="font-semibold text-lg">TestaIA</span>
+      </a>
+      <nav class="hidden md:flex gap-6 items-center text-sm">
+        <a href="#features" class="hover:text-teal-600">Funcionalidades</a>
+        <a href="#pricing" class="hover:text-teal-600">Preços</a>
+        <a href="#faq" class="hover:text-teal-600">FAQ</a>
+        <a href="#contact" class="px-4 py-2 bg-teal-600 text-white rounded-md shadow-sm">Acesso Antecipado</a>
+      </nav>
+      <div class="md:hidden">
+        <button id="menuBtn" class="p-2">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="gradient-hero text-white">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Testes automatizados com IA — rápidos, sem código, confiáveis.</h1>
+        <p class="mt-6 text-lg max-w-xl opacity-90">Detecte regressões, gere relatórios de qualidade e libere atualizações com segurança. Especial para PMEs e equipas que não têm equipa de QA dedicada.</p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-4">
+          <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 bg-white text-teal-700 rounded-md font-medium shadow">Quero testar grátis</a>
+          <a href="#features" class="inline-flex items-center justify-center px-6 py-3 border border-white rounded-md text-white/90">Ver funcionalidades</a>
+        </div>
+
+        <ul class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm opacity-90">
+          <li>✅ Sem código</li>
+          <li>✅ Relatórios em PDF</li>
+          <li>✅ Integração CI/CD</li>
+          <li>✅ Cobertura end-to-end</li>
+        </ul>
+      </div>
+
+      <div class="bg-white/5 rounded-xl p-6">
+        <img src="https://source.unsplash.com/800x600/?software,testing" alt="dashboard" class="w-full rounded-md shadow-md" />
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section id="features" class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold">O que TestaIA faz</h2>
+      <p class="mt-3 text-gray-600 max-w-2xl">Funcionalidades desenhadas para reduzir o tempo de teste e aumentar a confiança nas releases.</p>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Testes sem código</h3>
+          <p class="mt-2 text-sm text-gray-600">Crie cenários de teste usando gravação de ações ou com prompts em linguagem natural.</p>
+        </div>
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">IA para detecção de regressões</h3>
+          <p class="mt-2 text-sm text-gray-600">Algoritmos que priorizam falhas com base em impacto e histórico.</p>
+        </div>
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Integrações CI/CD</h3>
+          <p class="mt-2 text-sm text-gray-600">Conecta-se ao GitHub, GitLab, Bitbucket e aos principais pipelines.</p>
+        </div>
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Relatórios automáticos</h3>
+          <p class="mt-2 text-sm text-gray-600">PDFs, links partilháveis e tickets automáticos para o seu tracker.</p>
+        </div>
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Ambientes paralelos</h3>
+          <p class="mt-2 text-sm text-gray-600">Roda testes em múltiplas combinações de browser e dispositivo.</p>
+        </div>
+        <div class="p-6 border rounded-lg">
+          <h3 class="font-semibold">Dashboard de qualidade</h3>
+          <p class="mt-2 text-sm text-gray-600">Métricas chave: cobertura, falhas recorrentes e tendência de qualidade.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold">Preços simples</h2>
+      <p class="mt-2 text-gray-600">Escolha um plano que cresça com a sua equipa.</p>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <div class="p-6 bg-white rounded-lg border">
+          <h3 class="font-semibold">Starter</h3>
+          <p class="mt-2 text-2xl font-bold">€19/mês</p>
+          <p class="mt-4 text-sm text-gray-600">Ideal para freelancers e lojas online.</p>
+          <ul class="mt-4 text-sm text-gray-700 text-left">
+            <li>✔ 100 testes / mês</li>
+            <li>✔ Integração básica</li>
+            <li>✔ Relatórios em PDF</li>
+          </ul>
+          <a href="#contact" class="mt-6 inline-block px-4 py-2 bg-teal-600 text-white rounded-md">Começar</a>
+        </div>
+        <div class="p-6 bg-white rounded-lg border shadow-lg">
+          <h3 class="font-semibold">Business</h3>
+          <p class="mt-2 text-2xl font-bold">€69/mês</p>
+          <p class="mt-4 text-sm text-gray-600">Equipas em crescimento que precisam de automação robusta.</p>
+          <ul class="mt-4 text-sm text-gray-700 text-left">
+            <li>✔ 1.000 testes / mês</li>
+            <li>✔ Integração CI/CD completa</li>
+            <li>✔ Prioridade no suporte</li>
+          </ul>
+          <a href="#contact" class="mt-6 inline-block px-4 py-2 bg-teal-600 text-white rounded-md">Testar Business</a>
+        </div>
+        <div class="p-6 bg-white rounded-lg border">
+          <h3 class="font-semibold">Enterprise</h3>
+          <p class="mt-2 text-2xl font-bold">Sob consulta</p>
+          <p class="mt-4 text-sm text-gray-600">Soluções personalizadas para empresas com necessidades especiais.</p>
+          <ul class="mt-4 text-sm text-gray-700 text-left">
+            <li>✔ SLA 24/7</li>
+            <li>✔ Onboarding técnico</li>
+            <li>✔ Instalação privada</li>
+          </ul>
+          <a href="#contact" class="mt-6 inline-block px-4 py-2 bg-teal-600 text-white rounded-md">Contactar vendas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold">O que os clientes dizem</h2>
+      <div class="mt-6 grid md:grid-cols-3 gap-6">
+        <blockquote class="p-6 bg-white border rounded-lg">"Reduzimos regressões em 70% e economizamos 12h/semana." — Ana, CTO</blockquote>
+        <blockquote class="p-6 bg-white border rounded-lg">"Fácil de usar e integrou-se ao nosso pipeline." — João, Product Owner</blockquote>
+        <blockquote class="p-6 bg-white border rounded-lg">"Relatórios claros que facilitam a entrega ao cliente." — Marta, QA"</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-16 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-3xl font-bold">Perguntas frequentes</h2>
+      <div class="mt-6 space-y-4">
+        <details class="p-4 border rounded-lg"><summary class="font-semibold">Preciso saber programar?</summary><div class="mt-2 text-sm text-gray-600">Não. A plataforma tem gravação e criação com linguagem natural.</div></details>
+        <details class="p-4 border rounded-lg"><summary class="font-semibold">Integra com GitHub e GitLab?</summary><div class="mt-2 text-sm text-gray-600">Sim — e pode ser acionado via pull request.</div></details>
+        <details class="p-4 border rounded-lg"><summary class="font-semibold">Como funciona o pagamento?</summary><div class="mt-2 text-sm text-gray-600">Cartão com Stripe. Planos mensais e anuais.</div></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / LEAD FORM -->
+  <footer id="contact" class="py-16">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-8 items-start">
+      <div>
+        <h3 class="text-2xl font-bold">Queres experimentar o TestaIA?</h3>
+        <p class="mt-3 text-gray-600">Deixe seu email e a nossa equipa vai oferecer acesso antecipado grátis.</p>
+        <ul class="mt-6 text-sm text-gray-700">
+          <li>✅ Onboarding guiado</li>
+          <li>✅ Migração de scripts</li>
+          <li>✅ 14 dias grátis</li>
+        </ul>
+      </div>
+
+      <!-- Form: exemplo com Formspree -->
+      <div>
+        <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4 bg-white p-6 rounded-lg border">
+          <label class="block text-sm">Nome</label>
+          <input name="name" required class="w-full p-3 border rounded-md" />
+
+          <label class="block text-sm">Email</label>
+          <input name="email" type="email" required class="w-full p-3 border rounded-md" />
+
+          <label class="block text-sm">Empresa / Cargo (opcional)</label>
+          <input name="company" class="w-full p-3 border rounded-md" />
+
+          <label class="block text-sm">Mensagem (opcional)</label>
+          <textarea name="message" rows="4" class="w-full p-3 border rounded-md"></textarea>
+
+          <!-- Honeypot anti-spam -->
+          <input type="text" name="website" style="display:none" />
+
+          <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-3 bg-teal-600 text-white rounded-md">Quero acesso</button>
+          <p class="text-xs text-gray-500 mt-2">Ao enviar, aceita a nossa <a href="#" class="text-teal-600">Política de Privacidade</a>.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 mt-10 text-center text-xs text-gray-500">© TestaIA — 2025 • Feito por Ádila Oliveira (prototype)</div>
+  </footer>
+
+  <!-- SIMPLE COOKIE NOTICE -->
+  <div id="cookie" class="fixed bottom-4 right-4 bg-white border rounded-lg p-4 shadow-md text-sm hidden">
+    Usamos cookies para melhorar sua experiência. <button id="acceptCookie" class="ml-2 text-teal-600">Aceitar</button>
+  </div>
+
+  <script>
+    // mobile menu
+    document.getElementById('menuBtn')?.addEventListener('click', ()=> alert('Menu mobile: você pode implementar um menu off-canvas.'))
+
+    // cookie
+    if(!localStorage.getItem('cookieAccepted')) document.getElementById('cookie').classList.remove('hidden')
+    document.getElementById('acceptCookie')?.addEventListener('click', ()=>{ localStorage.setItem('cookieAccepted','1'); document.getElementById('cookie').classList.add('hidden') })
+  </script>
+
+  <!-- Analytics placeholder (substituir pelo ID real) -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments)}
+    gtag('js', new Date());
+    gtag('config', 'GA_MEASUREMENT_ID');
+  </script> -->
+</body>
+</html>
