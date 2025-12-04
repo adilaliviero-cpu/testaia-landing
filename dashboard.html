@@ -1,195 +1,158 @@
-// js/app.js
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TestAIA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Para gráficos -->
+    <style>body { font-family: 'Inter', sans-serif; }</style>
+</head>
+<body class="bg-gray-100">
 
-// ================= CONFIGURAÇÃO =================
-const SUPABASE_URL = "SUA_URL_DO_SUPABASE";
-const SUPABASE_ANON_KEY = "SUA_CHAVE_ANONIMA";
-const MODO_TESTE = true; // true = simulação local, false = Supabase real
+    <div class="flex h-screen overflow-hidden">
+        
+        <!-- Barra Lateral (Sidebar) -->
+        <aside class="w-64 bg-gray-900 text-white flex flex-col hidden md:flex">
+            <div class="h-16 flex items-center justify-center border-b border-gray-800">
+                <i data-lucide="cpu" class="h-6 w-6 text-blue-400 mr-2"></i>
+                <span class="font-bold text-lg">TestAIA</span>
+            </div>
+            <nav class="flex-1 px-2 py-4 space-y-2">
+                <a href="#" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-md">
+                    <i data-lucide="layout-dashboard" class="mr-3 h-5 w-5"></i>
+                    Visão Geral
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md">
+                    <i data-lucide="play-circle" class="mr-3 h-5 w-5"></i>
+                    Meus Testes
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md">
+                    <i data-lucide="settings" class="mr-3 h-5 w-5"></i>
+                    Configurações
+                </a>
+            </nav>
+            <div class="p-4 border-t border-gray-800">
+                <button onclick="alert('Saindo...')" class="flex items-center w-full text-gray-400 hover:text-white">
+                    <i data-lucide="log-out" class="mr-3 h-5 w-5"></i>
+                    Sair
+                </button>
+            </div>
+        </aside>
 
-// Se for usar Supabase real, descomente:
-// import { createClient } from '@supabase/supabase-js';
-// const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        <!-- Conteúdo Principal -->
+        <main class="flex-1 flex flex-col overflow-y-auto">
+            
+            <!-- Topo Mobile -->
+            <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 md:hidden">
+                <div class="font-bold text-gray-900">TestAIA</div>
+                <button class="text-gray-500"><i data-lucide="menu" class="h-6 w-6"></i></button>
+            </header>
 
-// ================= FUNÇÕES DE LOGIN =================
-async function login(email, password, botao) {
-    if (!email || !password) return alert("Preencha todos os campos!");
+            <div class="p-6">
+                <h1 class="text-2xl font-bold text-gray-900 mb-6">Painel de Controlo</h1>
 
-    const textoOriginal = botao.innerText;
-    botao.innerText = "A entrar...";
-    botao.disabled = true;
-    botao.style.opacity = "0.7";
+                <!-- Cartões de Resumo -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
+                                <i data-lucide="activity" class="h-6 w-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-500">Testes Executados</p>
+                                <p class="text-lg font-bold text-gray-900">124</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-600">
+                                <i data-lucide="check-circle" class="h-6 w-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-500">Sucesso</p>
+                                <p class="text-lg font-bold text-gray-900">98.5%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
+                                <i data-lucide="clock" class="h-6 w-6"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-sm text-gray-500">Tempo Médio</p>
+                                <p class="text-lg font-bold text-gray-900">1.2s</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-    try {
-        if (MODO_TESTE) {
-            console.log("Login simulado:", email);
-            await new Promise(r => setTimeout(r, 1500));
-            alert(`Login realizado! Bem-vindo(a), ${email}`);
-        } else {
-            // Supabase real:
-            // const { data, error } = await supabase.auth.signInWithPassword({ email, password });
-            // if (error) throw error;
-            // window.location.href = "dashboard.html";
-        }
-    } catch (erro) {
-        console.error(erro);
-        alert("Erro ao entrar: " + erro.message);
-    } finally {
-        botao.innerText = textoOriginal;
-        botao.disabled = false;
-        botao.style.opacity = "1";
-    }
-}
+                <!-- Área de Criar Teste -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
+                    <div class="p-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-900">Novo Teste Automatizado</h2>
+                    </div>
+                    <div class="p-6">
+                        <form id="form-criar-teste" class="flex flex-col md:flex-row gap-4">
+                            <input type="text" id="nome-teste" placeholder="Nome do Teste (ex: Login Home)" class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
+                            <input type="url" id="url-teste" placeholder="https://..." class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
+                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 font-medium">
+                                <i data-lucide="play" class="inline w-4 h-4 mr-1"></i> Criar e Rodar
+                            </button>
+                        </form>
+                    </div>
+                </div>
 
-// ================= FUNÇÕES DE REGISTO =================
-async function registrar(nome, email, password, botao) {
-    if (!email || !password) return alert("Preencha Email e Senha!");
+                <!-- Tabela de Testes Recentes -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
+                    <div class="p-4 border-b border-gray-200">
+                        <h2 class="text-lg font-semibold text-gray-900">Histórico Recente</h2>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-500">
+                            <thead class="bg-gray-50 text-xs uppercase text-gray-700">
+                                <tr>
+                                    <th class="px-6 py-3">Teste</th>
+                                    <th class="px-6 py-3">Status</th>
+                                    <th class="px-6 py-3">Data</th>
+                                    <th class="px-6 py-3 text-right">Ação</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-gray-900">Verificação de Login</td>
+                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Sucesso</span></td>
+                                    <td class="px-6 py-4">Há 2 min</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button id="btn-run-1" onclick="executarTeste(1)" class="text-blue-600 hover:text-blue-900">Re-executar</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 font-medium text-gray-900">Checkout Carrinho</td>
+                                    <td class="px-6 py-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Falha</span></td>
+                                    <td class="px-6 py-4">Há 1 hora</td>
+                                    <td class="px-6 py-4 text-right">
+                                        <button id="btn-run-2" onclick="executarTeste(2)" class="text-blue-600 hover:text-blue-900">Re-executar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    const textoOriginal = botao.innerText;
-    botao.innerText = "A criar conta...";
-    botao.disabled = true;
-    botao.style.opacity = "0.7";
+            </div>
+        </main>
+    </div>
 
-    try {
-        if (MODO_TESTE) {
-            console.log("Registro simulado:", nome, email);
-            await new Promise(r => setTimeout(r, 1500));
-            alert(`Conta criada! Bem-vindo(a), ${nome}`);
-        } else {
-            // Supabase real:
-            // const { data, error } = await supabase.auth.signUp({
-            //     email, password, options: { data: { full_name: nome } }
-            // });
-            // if (error) throw error;
-            // alert("Verifique seu email para confirmar a conta!");
-        }
-        return { nome, email, status: "registrado" };
-    } catch (erro) {
-        console.error(erro);
-        alert("Erro ao registrar: " + erro.message);
-    } finally {
-        botao.innerText = textoOriginal;
-        botao.disabled = false;
-        botao.style.opacity = "1";
-    }
-}
+    <!-- Scripts -->
+    <script>lucide.createIcons();</script>
+    <!-- Importar os nossos scripts JS -->
+    <script src="js/criarTeste.js"></script>
+    <script src="js/executarTeste.js"></script>
+</body>
+</html>
 
-// ================= FUNÇÕES DE CRIAÇÃO DE TESTE =================
-async function criarNovoTeste(nomeTeste, urlAlvo) {
-    if (!nomeTeste || !urlAlvo) return alert("Preencha nome do teste e URL!");
-
-    console.log("Criando teste:", nomeTeste);
-
-    if (MODO_TESTE) {
-        await new Promise(r => setTimeout(r, 1000));
-        const novoTeste = { id: Date.now(), nome: nomeTeste, url: urlAlvo, status: "pendente", data: "Agora" };
-        atualizarTabela(novoTeste);
-        alert(`Teste "${nomeTeste}" criado!`);
-        return novoTeste;
-    } else {
-        // Supabase real:
-        // const { data, error } = await supabase.from('testes').insert([
-        //     { nome: nomeTeste, url: urlAlvo, status: 'pendente', data_criacao: new Date() }
-        // ]).select();
-        // if (error) throw error;
-        // atualizarTabela(data[0]);
-        // return data[0];
-    }
-}
-
-// ================= FUNÇÕES DE EXECUÇÃO DE TESTE =================
-async function executarTeste(idTeste) {
-    const botao = document.getElementById(`btn-run-${idTeste}`);
-    if (botao) {
-        botao.disabled = true;
-        const textoOriginal = botao.innerText;
-        botao.innerText = "Rodando...";
-        botao.style.opacity = "0.7";
-    }
-
-    try {
-        await new Promise(r => setTimeout(r, 2000)); // simulação de IA
-        alert(`Teste ${idTeste} executado com sucesso!`);
-
-        // Atualizar botão e tabela
-        if (botao) {
-            botao.innerText = "Re-executar";
-            botao.classList.add("bg-green-600", "text-white");
-        }
-
-        const statusSpan = document.querySelector(`#status-${idTeste}`);
-        if (statusSpan) {
-            statusSpan.innerText = "Sucesso";
-            statusSpan.className = "bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs";
-        }
-    } catch (erro) {
-        console.error("Erro na execução:", erro);
-        alert("Erro ao executar o teste.");
-    } finally {
-        if (botao) {
-            botao.disabled = false;
-            botao.style.opacity = "1";
-        }
-    }
-}
-
-// ================= FUNÇÃO PARA ATUALIZAR TABELA =================
-function atualizarTabela(teste) {
-    const tbody = document.querySelector('table tbody');
-    if (!tbody) return;
-
-    const novaLinha = document.createElement('tr');
-    novaLinha.innerHTML = `
-        <td class="px-6 py-4 font-medium text-gray-900">${teste.nome}</td>
-        <td class="px-6 py-4">
-            <span id="status-${teste.id}" class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">
-                ${teste.status}
-            </span>
-        </td>
-        <td class="px-6 py-4">${teste.data}</td>
-        <td class="px-6 py-4 text-right">
-            <button id="btn-run-${teste.id}" onclick="executarTeste(${teste.id})" class="text-blue-600 hover:text-blue-900">
-                Executar
-            </button>
-        </td>
-    `;
-    tbody.prepend(novaLinha);
-}
-
-// ================= EVENTOS DOM =================
-document.addEventListener('DOMContentLoaded', () => {
-    // Formulário de criação de teste
-    const formCriacao = document.getElementById('form-criar-teste');
-    if (formCriacao) {
-        formCriacao.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nome = document.getElementById('nome-teste').value;
-            const url = document.getElementById('url-teste').value;
-            const resultado = await criarNovoTeste(nome, url);
-            if (resultado && resultado.id) executarTeste(resultado.id);
-            formCriacao.reset();
-        });
-    }
-
-    // Formulários de login e registro (se existirem)
-    const loginForm = document.querySelector('form#form-login');
-    if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('password').value;
-            const botao = loginForm.querySelector('button');
-            await login(email, senha, botao);
-        });
-    }
-
-    const registerForm = document.querySelector('form#form-register');
-    if (registerForm) {
-        registerForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const nome = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('password').value;
-            const botao = registerForm.querySelector('button');
-            await registrar(nome, email, senha, botao);
-        });
-    }
-});
