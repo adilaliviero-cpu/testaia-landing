@@ -1,0 +1,195 @@
+// js/app.js
+
+// ================= CONFIGURAÇÃO =================
+const SUPABASE_URL = "SUA_URL_DO_SUPABASE";
+const SUPABASE_ANON_KEY = "SUA_CHAVE_ANONIMA";
+const MODO_TESTE = true; // true = simulação local, false = Supabase real
+
+// Se for usar Supabase real, descomente:
+// import { createClient } from '@supabase/supabase-js';
+// const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+// ================= FUNÇÕES DE LOGIN =================
+async function login(email, password, botao) {
+    if (!email || !password) return alert("Preencha todos os campos!");
+
+    const textoOriginal = botao.innerText;
+    botao.innerText = "A entrar...";
+    botao.disabled = true;
+    botao.style.opacity = "0.7";
+
+    try {
+        if (MODO_TESTE) {
+            console.log("Login simulado:", email);
+            await new Promise(r => setTimeout(r, 1500));
+            alert(`Login realizado! Bem-vindo(a), ${email}`);
+        } else {
+            // Supabase real:
+            // const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+            // if (error) throw error;
+            // window.location.href = "dashboard.html";
+        }
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro ao entrar: " + erro.message);
+    } finally {
+        botao.innerText = textoOriginal;
+        botao.disabled = false;
+        botao.style.opacity = "1";
+    }
+}
+
+// ================= FUNÇÕES DE REGISTO =================
+async function registrar(nome, email, password, botao) {
+    if (!email || !password) return alert("Preencha Email e Senha!");
+
+    const textoOriginal = botao.innerText;
+    botao.innerText = "A criar conta...";
+    botao.disabled = true;
+    botao.style.opacity = "0.7";
+
+    try {
+        if (MODO_TESTE) {
+            console.log("Registro simulado:", nome, email);
+            await new Promise(r => setTimeout(r, 1500));
+            alert(`Conta criada! Bem-vindo(a), ${nome}`);
+        } else {
+            // Supabase real:
+            // const { data, error } = await supabase.auth.signUp({
+            //     email, password, options: { data: { full_name: nome } }
+            // });
+            // if (error) throw error;
+            // alert("Verifique seu email para confirmar a conta!");
+        }
+        return { nome, email, status: "registrado" };
+    } catch (erro) {
+        console.error(erro);
+        alert("Erro ao registrar: " + erro.message);
+    } finally {
+        botao.innerText = textoOriginal;
+        botao.disabled = false;
+        botao.style.opacity = "1";
+    }
+}
+
+// ================= FUNÇÕES DE CRIAÇÃO DE TESTE =================
+async function criarNovoTeste(nomeTeste, urlAlvo) {
+    if (!nomeTeste || !urlAlvo) return alert("Preencha nome do teste e URL!");
+
+    console.log("Criando teste:", nomeTeste);
+
+    if (MODO_TESTE) {
+        await new Promise(r => setTimeout(r, 1000));
+        const novoTeste = { id: Date.now(), nome: nomeTeste, url: urlAlvo, status: "pendente", data: "Agora" };
+        atualizarTabela(novoTeste);
+        alert(`Teste "${nomeTeste}" criado!`);
+        return novoTeste;
+    } else {
+        // Supabase real:
+        // const { data, error } = await supabase.from('testes').insert([
+        //     { nome: nomeTeste, url: urlAlvo, status: 'pendente', data_criacao: new Date() }
+        // ]).select();
+        // if (error) throw error;
+        // atualizarTabela(data[0]);
+        // return data[0];
+    }
+}
+
+// ================= FUNÇÕES DE EXECUÇÃO DE TESTE =================
+async function executarTeste(idTeste) {
+    const botao = document.getElementById(`btn-run-${idTeste}`);
+    if (botao) {
+        botao.disabled = true;
+        const textoOriginal = botao.innerText;
+        botao.innerText = "Rodando...";
+        botao.style.opacity = "0.7";
+    }
+
+    try {
+        await new Promise(r => setTimeout(r, 2000)); // simulação de IA
+        alert(`Teste ${idTeste} executado com sucesso!`);
+
+        // Atualizar botão e tabela
+        if (botao) {
+            botao.innerText = "Re-executar";
+            botao.classList.add("bg-green-600", "text-white");
+        }
+
+        const statusSpan = document.querySelector(`#status-${idTeste}`);
+        if (statusSpan) {
+            statusSpan.innerText = "Sucesso";
+            statusSpan.className = "bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs";
+        }
+    } catch (erro) {
+        console.error("Erro na execução:", erro);
+        alert("Erro ao executar o teste.");
+    } finally {
+        if (botao) {
+            botao.disabled = false;
+            botao.style.opacity = "1";
+        }
+    }
+}
+
+// ================= FUNÇÃO PARA ATUALIZAR TABELA =================
+function atualizarTabela(teste) {
+    const tbody = document.querySelector('table tbody');
+    if (!tbody) return;
+
+    const novaLinha = document.createElement('tr');
+    novaLinha.innerHTML = `
+        <td class="px-6 py-4 font-medium text-gray-900">${teste.nome}</td>
+        <td class="px-6 py-4">
+            <span id="status-${teste.id}" class="bg-gray-100 text-gray-800 px-2 py-1 rounded-full text-xs">
+                ${teste.status}
+            </span>
+        </td>
+        <td class="px-6 py-4">${teste.data}</td>
+        <td class="px-6 py-4 text-right">
+            <button id="btn-run-${teste.id}" onclick="executarTeste(${teste.id})" class="text-blue-600 hover:text-blue-900">
+                Executar
+            </button>
+        </td>
+    `;
+    tbody.prepend(novaLinha);
+}
+
+// ================= EVENTOS DOM =================
+document.addEventListener('DOMContentLoaded', () => {
+    // Formulário de criação de teste
+    const formCriacao = document.getElementById('form-criar-teste');
+    if (formCriacao) {
+        formCriacao.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('nome-teste').value;
+            const url = document.getElementById('url-teste').value;
+            const resultado = await criarNovoTeste(nome, url);
+            if (resultado && resultado.id) executarTeste(resultado.id);
+            formCriacao.reset();
+        });
+    }
+
+    // Formulários de login e registro (se existirem)
+    const loginForm = document.querySelector('form#form-login');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            const botao = loginForm.querySelector('button');
+            await login(email, senha, botao);
+        });
+    }
+
+    const registerForm = document.querySelector('form#form-register');
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const nome = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            const botao = registerForm.querySelector('button');
+            await registrar(nome, email, senha, botao);
+        });
+    }
+});
