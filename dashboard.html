@@ -12,7 +12,7 @@
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-gray-100">
-
+    
     <div class="flex h-screen overflow-hidden">
         
         <!-- Barra Lateral (Sidebar) -->
@@ -36,7 +36,6 @@
                 </a>
             </nav>
             <div class="p-4 border-t border-gray-800">
-                <!-- Botão de Sair (Redireciona para a página inicial) -->
                 <button onclick="window.location.href='index.html'" class="flex items-center w-full text-gray-400 hover:text-white">
                     <i data-lucide="log-out" class="mr-3 h-5 w-5"></i>
                     Sair
@@ -47,7 +46,6 @@
         <!-- Conteúdo Principal -->
         <main class="flex-1 flex flex-col overflow-y-auto">
             
-            <!-- Topo Mobile -->
             <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 md:hidden">
                 <div class="font-bold text-gray-900">TestAIA</div>
                 <button class="text-gray-500"><i data-lucide="menu" class="h-6 w-6"></i></button>
@@ -56,7 +54,7 @@
             <div class="p-6">
                 <h1 class="text-2xl font-bold text-gray-900 mb-6">Painel de Controlo</h1>
 
-                <!-- Cartões de Resumo -->
+                <!-- Cartões de Resumo (Omitido por brevidade) -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                         <div class="flex items-center">
@@ -99,7 +97,7 @@
                         <h2 class="text-lg font-semibold text-gray-900">Novo Teste Automatizado</h2>
                     </div>
                     <div class="p-6">
-                        <!-- ID 'form-criar-teste' será usado pelo criarTeste.js -->
+                        <!-- ID 'form-criar-teste' é o ponto de ligação -->
                         <form id="form-criar-teste" class="flex flex-col md:flex-row gap-4">
                             <input type="text" id="nome-teste" name="nome-teste" placeholder="Nome do Teste (ex: Login Home)" class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
                             <input type="url" id="url-teste" name="url-teste" placeholder="https://..." class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
@@ -110,7 +108,7 @@
                     </div>
                 </div>
 
-                <!-- Tabela de Testes Recentes -->
+                <!-- Tabela e Gráfico (Omitido por brevidade) -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200">
                     <div class="p-4 border-b border-gray-200">
                         <h2 class="text-lg font-semibold text-gray-900">Histórico Recente</h2>
@@ -147,7 +145,6 @@
                     </div>
                 </div>
 
-                <!-- Gráfico de Tendência (Opcional, mas dá um toque pro) -->
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
                     <h2 class="text-lg font-semibold text-gray-900 mb-4">Taxa de Sucesso dos Testes</h2>
                     <canvas id="successChart" height="100"></canvas>
@@ -161,7 +158,9 @@
     <script>
         lucide.createIcons();
         
-        // Dados de exemplo para o gráfico (pode ser substituído por dados reais do Supabase)
+        // Mensagem de Verificação do HTML
+        console.log("DASHBOARD.HTML (HTML) VISUALIZADO COM SUCESSO!");
+
         const ctx = document.getElementById('successChart').getContext('2d');
         const successChart = new Chart(ctx, {
             type: 'line',
@@ -170,7 +169,7 @@
                 datasets: [{
                     label: 'Taxa de Sucesso (%)',
                     data: [85, 88, 92, 95, 90, 98, 97],
-                    borderColor: 'rgb(37, 99, 235)', // Tailwind blue-600
+                    borderColor: 'rgb(37, 99, 235)',
                     backgroundColor: 'rgba(37, 99, 235, 0.1)',
                     tension: 0.4,
                     fill: true
@@ -184,6 +183,7 @@
             }
         });
     </script>
+    <!-- Chamada dos scripts de Lógica -->
     <script type="module" defer src="js/criarTeste.js"></script>
     <script type="module" defer src="js/executarTeste.js"></script>
 </body>
