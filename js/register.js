@@ -5,7 +5,7 @@
 // ATENÇÃO: CONFIRMA QUE O URL E A CHAVE SÃO OS MESMOS DO TEU SUPABASE
 // =========================================================================
 const SUPABASE_URL = "https://njgxfeemwybiuzoymdhw.supabase.co"; 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NDQ3MzEsImV4cCI6MTg1OTQxMTEzMX0.5UoZkqfG0rA5u1uQzyx6mY7eC0Ts0-FU0UXDvabJ1Ao";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NDQ3MzEsImV4cCI6MTg1OTQxMTEzMX0.5UoZkqfG0rA5u1uQzyx6mY7eC0Ts0-FU0UXDvabJ1AoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NTI4OTAsImV4cCI6MjA4MDQyODg5MH0.-eldoV3CvMp0QmwuDxCFPjr4ztwJ1wZp4pB6ZP2TJJU";
 // =========================================================================
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -61,3 +61,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
