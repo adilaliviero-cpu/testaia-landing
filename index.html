@@ -42,7 +42,7 @@
         </div>
     </nav>
 
-    <!-- Seção Hero - MAIS CLARO E FOCADO -->
+    <!-- Seção Hero -->
     <section id="inicio" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-4">
@@ -62,7 +62,7 @@
         </div>
     </section>
 
-    <!-- Seção de Soluções - O QUE OFERECE -->
+    <!-- Seção de Soluções -->
     <section id="solucoes" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -97,7 +97,7 @@
         </div>
     </section>
     
-    <!-- Seção de Preços - CLAREZA DE CUSTO -->
+    <!-- Seção de Preços -->
     <section id="precos" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -171,6 +171,9 @@
                 <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Fale com Nossos Especialistas</h2>
                 
                 <!-- ID crucial para Formspree funcionar sem conflito com o JS de Login -->
+                <!-- Adicionado elemento para mensagem de feedback -->
+                <div id="contact-message" class="text-center p-3 mb-4 rounded-lg hidden" role="alert"></div>
+
                 <form id="contact-formspree" action="https://formspree.io/f/xdkqzqla" method="POST" class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Email Corporativo</label>
@@ -180,7 +183,7 @@
                         <label class="block text-sm font-medium text-gray-700">Como podemos ajudar?</label>
                         <textarea name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
                     </div>
-                    <button type="submit" class="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 font-medium">
+                    <button type="submit" id="contact-submit-btn" class="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 font-medium">
                         Solicitar Contato
                     </button>
                 </form>
@@ -204,6 +207,46 @@
     <!-- Scripts Base e Lógica de Aplicação -->
     <script> lucide.createIcons(); </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Script para AJAX Formspree -->
+    <script>
+        const form = document.getElementById('contact-formspree');
+        const messageDiv = document.getElementById('contact-message');
+        const submitBtn = document.getElementById('contact-submit-btn');
+
+        if (form) {
+            form.addEventListener("submit", async function (e) {
+                e.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.innerText = "A Enviar...";
+                messageDiv.classList.add('hidden');
+
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                submitBtn.disabled = false;
+                submitBtn.innerText = "Solicitar Contato";
+                messageDiv.classList.remove('hidden');
+
+                if (response.ok) {
+                    messageDiv.textContent = "✅ Mensagem enviada com sucesso! Responderemos em breve.";
+                    messageDiv.classList.add('bg-green-100', 'text-green-800');
+                    messageDiv.classList.remove('bg-red-100', 'text-red-800');
+                    form.reset(); // Limpa o formulário após o sucesso
+                } else {
+                    messageDiv.textContent = "❌ Ocorreu um erro ao enviar. Tente novamente.";
+                    messageDiv.classList.add('bg-red-100', 'text-red-800');
+                    messageDiv.classList.remove('bg-green-100', 'text-green-800');
+                }
+            });
+        }
+    </script>
+    <!-- Scripts de Lógica (Login/Registo/Testes) -->
     <script type="module" defer src="js/login.js"></script>
     <script type="module" defer src="js/register.js"></script>
     <script type="module" defer src="js/criarTeste.js"></script>
