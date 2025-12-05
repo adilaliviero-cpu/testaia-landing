@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TestAIA - Soluções Inteligentes</title>
+    <title>TestAIA - Testes Automatizados com IA</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -19,7 +19,7 @@
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Navegação e Conteúdo (Igual ao anterior) -->
+    <!-- Navegação -->
     <nav class="bg-white shadow-sm fixed w-full z-10 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
@@ -30,97 +30,147 @@
                 
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Início</a>
-                    <a href="#servicos" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Soluções</a>
-                    <a href="#faq" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">FAQ</a>
+                    <a href="#solucoes" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Soluções</a>
+                    <a href="#precos" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Preços</a>
                     <a href="#contato" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contato</a>
                 </div>
                 
                 <div>
-                    <a href="#contato" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">Fale Connosco</a>
+                    <a href="auth.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">Acesso Clientes</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Seção Hero -->
+    <!-- Seção Hero - MAIS CLARO E FOCADO -->
     <section id="inicio" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-4">
-                O Futuro da <span class="gradient-text">Inteligência Artificial</span>
+                Testes Automatizados com <span class="gradient-text">Inteligência Artificial</span>
             </h1>
             <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                A TestAIA transforma dados complexos em resultados simples e escaláveis para o seu negócio.
+                **Rápido, sem código e 100% confiável.** Detetamos regressões e garantimos a qualidade do seu software antes do lançamento.
             </p>
             <div class="mt-8 flex justify-center gap-4">
-                <a href="#contato" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition shadow-lg">
-                    Agendar Demo
+                <a href="#precos" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition shadow-lg">
+                    Ver Pacotes de Preços
                 </a>
-                <a href="#servicos" class="px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:text-lg transition">
-                    Saiba Mais
+                <a href="#solucoes" class="px-8 py-3 border border-gray-300 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:text-lg transition">
+                    Ver Funcionalidades
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Soluções (Omitida por brevidade, é igual) -->
-    <section id="servicos" class="py-20 bg-gray-50">
+    <!-- Seção de Soluções - O QUE OFERECE -->
+    <section id="solucoes" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Nossas Soluções</h2>
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Como Funciona</h2>
                 <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-                    Tecnologia de Ponta
+                    Automação Inteligente de QA (Quality Assurance)
                 </p>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="zap" class="text-blue-600 h-6 w-6"></i>
+                        <i data-lucide="scan" class="text-blue-600 h-6 w-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Automação Inteligente</h3>
-                    <p class="text-gray-500">Reduza tarefas manuais e foque no estratégico.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Teste Visual com IA</h3>
+                    <p class="text-gray-500">A IA compara o layout da sua aplicação em diferentes ecrãs e browsers, encontrando falhas visuais que testes normais não veriam.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="bar-chart-2" class="text-purple-600 h-6 w-6"></i>
+                        <i data-lucide="fingerprint" class="text-purple-600 h-6 w-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Analytics Avançado</h3>
-                    <p class="text-gray-500">Dashboards preditivos para tomada de decisão.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Criação Sem Código</h3>
+                    <p class="text-gray-500">Crie novos cenários de teste complexos apenas gravando a interação no seu navegador. Não precisa de programar.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="shield-check" class="text-green-600 h-6 w-6"></i>
+                        <i data-lucide="gauge" class="text-green-600 h-6 w-6"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">Segurança de Dados</h3>
-                    <p class="text-gray-500">Proteção total e conformidade com LGPD.</p>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Relatórios Claros</h3>
+                    <p class="text-gray-500">Gere relatórios de bugs e regressões em PDF, integrados diretamente no seu pipeline de desenvolvimento (CI/CD).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção de Preços - CLAREZA DE CUSTO -->
+    <section id="precos" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">Preços</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                    Escolha o Plano Perfeito
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Plano 1: BÁSICO -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Plano Essencial</h3>
+                    <p class="text-lg text-gray-500 mb-6">Ideal para freelancers e pequenos projetos.</p>
+                    <div class="text-4xl font-extrabold text-blue-600 mb-6">
+                        €29<span class="text-xl font-medium text-gray-500">/mês</span>
+                    </div>
+                    <ul class="text-left space-y-3 text-gray-600 mb-8">
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> 100 Testes por mês</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Relatórios de falhas básicos</li>
+                        <li class="flex items-center"><i data-lucide="x" class="h-5 w-5 text-red-500 mr-2"></i> Sem CI/CD Integration</li>
+                    </ul>
+                    <a href="#contato" class="w-full block py-3 px-4 rounded-lg text-white bg-blue-500 hover:bg-blue-600 font-semibold">
+                        Começar Agora
+                    </a>
+                </div>
+
+                <!-- Plano 2: PROFISSIONAL (Destaque) -->
+                <div class="bg-blue-600 p-8 rounded-xl shadow-2xl border-4 border-yellow-400 text-center scale-105">
+                    <h3 class="text-2xl font-bold text-white mb-4">Plano Pro</h3>
+                    <p class="text-lg text-blue-200 mb-6">Para equipas de QA em crescimento.</p>
+                    <div class="text-4xl font-extrabold text-yellow-400 mb-6">
+                        €99<span class="text-xl font-medium text-blue-200">/mês</span>
+                    </div>
+                    <ul class="text-left space-y-3 text-white mb-8">
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Testes Ilimitados</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Teste Visual e Funcional</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Integração CI/CD (GitHub/GitLab)</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Suporte Prioritário</li>
+                    </ul>
+                    <a href="auth.html" class="w-full block py-3 px-4 rounded-lg text-blue-600 bg-white hover:bg-gray-100 font-semibold">
+                        Registar
+                    </a>
+                </div>
+
+                <!-- Plano 3: EMPRESARIAL -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 text-center">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Plano Enterprise</h3>
+                    <p class="text-lg text-gray-500 mb-6">Para grandes empresas com alta demanda.</p>
+                    <div class="text-4xl font-extrabold text-blue-600 mb-6">
+                        Personalizado
+                    </div>
+                    <ul class="text-left space-y-3 text-gray-600 mb-8">
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Todos os recursos do Plano Pro</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Servidores Dedicados</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> SLA (Acordo de Nível de Serviço)</li>
+                    </ul>
+                    <a href="#contato" class="w-full block py-3 px-4 rounded-lg text-white bg-blue-500 hover:bg-blue-600 font-semibold">
+                        Falar com Vendas
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção FAQ (Omitida por brevidade, é igual) -->
-    <section id="faq" class="py-20 bg-white">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">Perguntas Frequentes</h2>
-            <div class="space-y-6">
-                <div class="border-b border-gray-200 pb-4">
-                    <h3 class="text-lg font-medium text-gray-900">Como a TestAIA pode ajudar minha empresa?</h3>
-                    <p class="mt-2 text-gray-500">Identificamos gargalos e implementamos soluções de IA para aumentar sua eficiência.</p>
-                </div>
-                <div class="border-b border-gray-200 pb-4">
-                    <h3 class="text-lg font-medium text-gray-900">Vocês oferecem suporte contínuo?</h3>
-                    <p class="mt-2 text-gray-500">Sim, temos planos de acompanhamento e manutenção para garantir resultados.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contato -->
+    <!-- Seção de Contato -->
     <section id="contato" class="py-20 bg-gray-50">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white py-8 px-6 shadow rounded-lg border border-gray-200">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Fale com Nossos Especialistas</h2>
                 
-                <!-- O Formspree deve funcionar agora com este ID! -->
+                <!-- ID crucial para Formspree funcionar sem conflito com o JS de Login -->
                 <form id="contact-formspree" action="https://formspree.io/f/xdkqzqla" method="POST" class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Email Corporativo</label>
@@ -138,7 +188,7 @@
         </div>
     </section>
 
-    <!-- Footer (Omitido por brevidade, é igual) -->
+    <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex justify-center items-center gap-2 mb-4">
@@ -151,11 +201,9 @@
         </div>
     </footer>
 
-    <!-- Scripts Base -->
+    <!-- Scripts Base e Lógica de Aplicação -->
     <script> lucide.createIcons(); </script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-    <!-- CORREÇÃO 2: Sintaxe robusta para carregamento e inclusão dos scripts -->
     <script type="module" defer src="js/login.js"></script>
     <script type="module" defer src="js/register.js"></script>
     <script type="module" defer src="js/criarTeste.js"></script>
