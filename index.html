@@ -4,10 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TestAIA - Testes Automatizados com IA</title>
+    <meta name="description" content="TestAIA: Testes automatizados de software com Inteligência Artificial. Rápido, confiável e sem código.">
+    <meta property="og:title" content="TestAIA - Testes Automatizados com IA">
+    <meta property="og:description" content="Detete regressões e garanta a qualidade do seu software com automação inteligente de QA.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="URL_DA_IMAGEM_DE_PREVIEW"> <!-- substitua pela sua imagem -->
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+    
     <style>
         body { font-family: 'Inter', sans-serif; }
         .gradient-text {
@@ -15,41 +22,50 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .modal {
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            ring: 2px;
+            ring-offset-2;
+            ring-blue-500;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
 
-    <!-- Navegação -->
-    <nav class="bg-white shadow-sm fixed w-full z-10 top-0">
+    <!-- NAVIGAÇÃO -->
+    <nav class="bg-white shadow-sm fixed w-full z-20 top-0">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0 flex items-center gap-2">
-                    <i data-lucide="cpu" class="h-8 w-8 text-blue-600"></i>
+                    <i data-lucide="cpu" class="h-8 w-8 text-blue-600" alt="Ícone TestAIA"></i>
                     <span class="font-bold text-xl text-gray-900">TestAIA</span>
                 </div>
-                
                 <div class="hidden md:flex space-x-8">
                     <a href="#inicio" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Início</a>
                     <a href="#solucoes" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Soluções</a>
                     <a href="#precos" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Preços</a>
                     <a href="#contato" class="text-gray-600 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium">Contato</a>
                 </div>
-                
                 <div>
-                    <a href="auth.html" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">Acesso Clientes</a>
+                    <button id="open-auth-modal" class="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700 transition">
+                        Acesso Clientes
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Seção Hero -->
+    <!-- HERO -->
     <section id="inicio" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div class="max-w-7xl mx-auto text-center">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight mb-4">
                 Testes Automatizados com <span class="gradient-text">Inteligência Artificial</span>
             </h1>
             <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                **Rápido, sem código e 100% confiável.** Detetamos regressões e garantimos a qualidade do seu software antes do lançamento.
+                <strong>Rápido, sem código e 100% confiável.</strong> Detetamos regressões e garantimos a qualidade do seu software antes do lançamento.
             </p>
             <div class="mt-8 flex justify-center gap-4">
                 <a href="#precos" class="px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 md:text-lg transition shadow-lg">
@@ -62,7 +78,7 @@
         </div>
     </section>
 
-    <!-- Seção de Soluções -->
+    <!-- SOLUÇÕES -->
     <section id="solucoes" class="py-20 bg-gray-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -74,21 +90,21 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="scan" class="text-blue-600 h-6 w-6"></i>
+                        <i data-lucide="scan" class="text-blue-600 h-6 w-6" alt="Ícone de Teste Visual"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Teste Visual com IA</h3>
                     <p class="text-gray-500">A IA compara o layout da sua aplicação em diferentes ecrãs e browsers, encontrando falhas visuais que testes normais não veriam.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="fingerprint" class="text-purple-600 h-6 w-6"></i>
+                        <i data-lucide="fingerprint" class="text-purple-600 h-6 w-6" alt="Ícone Criação Sem Código"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Criação Sem Código</h3>
                     <p class="text-gray-500">Crie novos cenários de teste complexos apenas gravando a interação no seu navegador. Não precisa de programar.</p>
                 </div>
                 <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-lg transition">
                     <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mb-6">
-                        <i data-lucide="gauge" class="text-green-600 h-6 w-6"></i>
+                        <i data-lucide="gauge" class="text-green-600 h-6 w-6" alt="Ícone Relatórios Claros"></i>
                     </div>
                     <h3 class="text-xl font-bold text-gray-900 mb-3">Relatórios Claros</h3>
                     <p class="text-gray-500">Gere relatórios de bugs e regressões em PDF, integrados diretamente no seu pipeline de desenvolvimento (CI/CD).</p>
@@ -96,8 +112,8 @@
             </div>
         </div>
     </section>
-    
-    <!-- Seção de Preços -->
+
+    <!-- PREÇOS -->
     <section id="precos" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
@@ -106,10 +122,8 @@
                     Escolha o Plano Perfeito
                 </p>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <!-- Plano 1: BÁSICO -->
+                <!-- Plano Essencial -->
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 text-center">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Plano Essencial</h3>
                     <p class="text-lg text-gray-500 mb-6">Ideal para freelancers e pequenos projetos.</p>
@@ -117,16 +131,15 @@
                         €29<span class="text-xl font-medium text-gray-500">/mês</span>
                     </div>
                     <ul class="text-left space-y-3 text-gray-600 mb-8">
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> 100 Testes por mês</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Relatórios de falhas básicos</li>
-                        <li class="flex items-center"><i data-lucide="x" class="h-5 w-5 text-red-500 mr-2"></i> Sem CI/CD Integration</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2" alt="check"></i> 100 Testes por mês</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2" alt="check"></i> Relatórios de falhas básicos</li>
+                        <li class="flex items-center"><i data-lucide="x" class="h-5 w-5 text-red-500 mr-2" alt="x"></i> Sem CI/CD Integration</li>
                     </ul>
-                    <a href="#contato" class="w-full block py-3 px-4 rounded-lg text-white bg-blue-500 hover:bg-blue-600 font-semibold">
+                    <a href="#open-auth-modal" class="w-full block py-3 px-4 rounded-lg text-white bg-blue-500 hover:bg-blue-600 font-semibold">
                         Começar Agora
                     </a>
                 </div>
-
-                <!-- Plano 2: PROFISSIONAL (Destaque) -->
+                <!-- Plano Pro -->
                 <div class="bg-blue-600 p-8 rounded-xl shadow-2xl border-4 border-yellow-400 text-center scale-105">
                     <h3 class="text-2xl font-bold text-white mb-4">Plano Pro</h3>
                     <p class="text-lg text-blue-200 mb-6">Para equipas de QA em crescimento.</p>
@@ -134,17 +147,16 @@
                         €99<span class="text-xl font-medium text-blue-200">/mês</span>
                     </div>
                     <ul class="text-left space-y-3 text-white mb-8">
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Testes Ilimitados</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Teste Visual e Funcional</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Integração CI/CD (GitHub/GitLab)</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Suporte Prioritário</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2" alt="check"></i> Testes Ilimitados</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2" alt="check"></i> Teste Visual e Funcional</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2" alt="check"></i> Integração CI/CD (GitHub/GitLab)</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2" alt="check"></i> Suporte Prioritário</li>
                     </ul>
-                    <a href="auth.html" class="w-full block py-3 px-4 rounded-lg text-blue-600 bg-white hover:bg-gray-100 font-semibold">
+                    <button type="button" id="open-auth-modal-2" class="w-full block py-3 px-4 rounded-lg text-blue-600 bg-white hover:bg-gray-100 font-semibold">
                         Registar
-                    </a>
+                    </button>
                 </div>
-
-                <!-- Plano 3: EMPRESARIAL -->
+                <!-- Plano Enterprise -->
                 <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 text-center">
                     <h3 class="text-2xl font-bold text-gray-900 mb-4">Plano Enterprise</h3>
                     <p class="text-lg text-gray-500 mb-6">Para grandes empresas com alta demanda.</p>
@@ -152,9 +164,9 @@
                         Personalizado
                     </div>
                     <ul class="text-left space-y-3 text-gray-600 mb-8">
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Todos os recursos do Plano Pro</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Servidores Dedicados</li>
-                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> SLA (Acordo de Nível de Serviço)</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2" alt="check"></i> Todos os recursos do Plano Pro</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2" alt="check"></i> Servidores Dedicados</li>
+                        <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2" alt="check"></i> SLA (Acordo de Nível de Serviço)</li>
                     </ul>
                     <a href="#contato" class="w-full block py-3 px-4 rounded-lg text-white bg-blue-500 hover:bg-blue-600 font-semibold">
                         Falar com Vendas
@@ -164,24 +176,20 @@
         </div>
     </section>
 
-    <!-- Seção de Contato -->
+    <!-- CONTATO -->
     <section id="contato" class="py-20 bg-gray-50">
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white py-8 px-6 shadow rounded-lg border border-gray-200">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Fale com Nossos Especialistas</h2>
-                
-                <!-- ID crucial para Formspree funcionar sem conflito com o JS de Login -->
-                <!-- Adicionado elemento para mensagem de feedback -->
                 <div id="contact-message" class="text-center p-3 mb-4 rounded-lg hidden" role="alert"></div>
-
                 <form id="contact-formspree" action="https://formspree.io/f/xdkqzqla" method="POST" class="space-y-6">
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Email Corporativo</label>
-                        <input name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
+                        <input name="email" type="email" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Como podemos ajudar?</label>
-                        <textarea name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
+                        <textarea name="message" rows="4" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring focus:ring-blue-500"></textarea>
                     </div>
                     <button type="submit" id="contact-submit-btn" class="w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 font-medium">
                         Solicitar Contato
@@ -191,66 +199,36 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-white py-8 border-t border-gray-800">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <div class="flex justify-center items-center gap-2 mb-4">
-                <i data-lucide="cpu" class="h-6 w-6 text-blue-400"></i>
+                <i data-lucide="cpu" class="h-6 w-6 text-blue-400" alt="Ícone TestAIA"></i>
                 <span class="font-bold text-lg">TestAIA</span>
             </div>
-            <p class="text-gray-400 text-sm">
-                &copy; 2025 TestAIA. Todos os direitos reservados.
-            </p>
+            <p class="text-gray-400 text-sm">&copy; 2025 TestAIA. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <!-- Scripts Base e Lógica de Aplicação -->
-    <script> lucide.createIcons(); </script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- MODAL LOGIN/REGISTO -->
+    <div id="auth-modal" class="modal fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-30 opacity-0 invisible" aria-hidden="true">
+        <div class="w-full max-w-md bg-white rounded-xl shadow-2xl p-8 transform transition-transform scale-95 duration-300 relative">
+            <button id="close-auth-modal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600" aria-label="Fechar Modal">
+                <i data-lucide="x" class="h-6 w-6"></i>
+            </button>
+            <div class="text-center mb-8">
+                <i data-lucide="cpu" class="h-10 w-10 text-blue-600 mx-auto mb-3" alt="Logo TestAIA"></i>
+                <h1 class="text-3xl font-bold text-gray-900">Acesso TestAIA</h1>
+                <p class="text-gray-500 mt-2">Entre ou crie a sua conta para começar a automatizar.</p>
+            </div>
 
-    <!-- Script para AJAX Formspree -->
-    <script>
-        const form = document.getElementById('contact-formspree');
-        const messageDiv = document.getElementById('contact-message');
-        const submitBtn = document.getElementById('contact-submit-btn');
+            <div class="flex border border-gray-200 rounded-lg overflow-hidden mb-6">
+                <button id="modal-btn-show-login" class="flex-1 py-2 font-medium text-sm transition-colors duration-300 bg-blue-600 text-white">Entrar</button>
+                <button id="modal-btn-show-register" class="flex-1 py-2 font-medium text-sm transition-colors duration-300 bg-white text-gray-700 hover:bg-gray-100">Registar</button>
+            </div>
 
-        if (form) {
-            form.addEventListener("submit", async function (e) {
-                e.preventDefault();
-                submitBtn.disabled = true;
-                submitBtn.innerText = "A Enviar...";
-                messageDiv.classList.add('hidden');
-
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                submitBtn.disabled = false;
-                submitBtn.innerText = "Solicitar Contato";
-                messageDiv.classList.remove('hidden');
-
-                if (response.ok) {
-                    messageDiv.textContent = "✅ Mensagem enviada com sucesso! Responderemos em breve.";
-                    messageDiv.classList.add('bg-green-100', 'text-green-800');
-                    messageDiv.classList.remove('bg-red-100', 'text-red-800');
-                    form.reset(); // Limpa o formulário após o sucesso
-                } else {
-                    messageDiv.textContent = "❌ Ocorreu um erro ao enviar. Tente novamente.";
-                    messageDiv.classList.add('bg-red-100', 'text-red-800');
-                    messageDiv.classList.remove('bg-green-100', 'text-green-800');
-                }
-            });
-        }
-    </script>
-    <!-- Scripts de Lógica (Login/Registo/Testes) -->
-    <script type="module" defer src="js/login.js"></script>
-    <script type="module" defer src="js/register.js"></script>
-    <script type="module" defer src="js/criarTeste.js"></script>
-    <script type="module" defer src="js/executarTeste.js"></script>
-</body>
-</html>
-
+            <form id="form-login" class="space-y-4" method="POST">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input id="login-email" name="email" type="email" required placeholder="seu@email.com"
+                           class="mt-1 w-full p-3 border border-gray-300
