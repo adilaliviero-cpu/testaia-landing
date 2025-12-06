@@ -12,7 +12,7 @@
     <style>body { font-family: 'Inter', sans-serif; }</style>
 </head>
 <body class="bg-gray-100">
-    
+
     <div class="flex h-screen overflow-hidden">
         
         <!-- Barra Lateral (Sidebar) -->
@@ -36,6 +36,8 @@
                 </a>
             </nav>
             <div class="p-4 border-t border-gray-800">
+                <p class="text-xs text-gray-500 mb-2">ID do Utilizador Logado (Debug):</p>
+                <p id="user-id-display" class="text-xs font-mono break-all text-blue-300 mb-4">A carregar...</p>
                 <button onclick="window.location.href='index.html'" class="flex items-center w-full text-gray-400 hover:text-white">
                     <i data-lucide="log-out" class="mr-3 h-5 w-5"></i>
                     Sair
@@ -54,7 +56,7 @@
             <div class="p-6">
                 <h1 class="text-2xl font-bold text-gray-900 mb-6">Painel de Controlo</h1>
 
-                <!-- Cartões de Resumo (Omitido por brevidade) -->
+                <!-- Cartões de Resumo -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
                     <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
                         <div class="flex items-center">
@@ -62,8 +64,8 @@
                                 <i data-lucide="activity" class="h-6 w-6"></i>
                             </div>
                             <div class="ml-4">
-                                <p class="text-sm text-gray-500">Testes Executados</p>
-                                <p class="text-lg font-bold text-gray-900">124</p>
+                                <p class="text-sm text-gray-500">Testes Totais</p>
+                                <p id="testes-executados" class="text-lg font-bold text-gray-900">--</p>
                             </div>
                         </div>
                     </div>
@@ -74,7 +76,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm text-gray-500">Sucesso</p>
-                                <p class="text-lg font-bold text-gray-900">98.5%</p>
+                                <p id="taxa-sucesso" class="text-lg font-bold text-gray-900">--</p>
                             </div>
                         </div>
                     </div>
@@ -85,7 +87,7 @@
                             </div>
                             <div class="ml-4">
                                 <p class="text-sm text-gray-500">Tempo Médio</p>
-                                <p class="text-lg font-bold text-gray-900">1.2s</p>
+                                <p id="tempo-medio" class="text-lg font-bold text-gray-900">--</p>
                             </div>
                         </div>
                     </div>
@@ -97,7 +99,6 @@
                         <h2 class="text-lg font-semibold text-gray-900">Novo Teste Automatizado</h2>
                     </div>
                     <div class="p-6">
-                        <!-- ID 'form-criar-teste' é o ponto de ligação -->
                         <form id="form-criar-teste" class="flex flex-col md:flex-row gap-4">
                             <input type="text" id="nome-teste" name="nome-teste" placeholder="Nome do Teste (ex: Login Home)" class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
                             <input type="url" id="url-teste" name="url-teste" placeholder="https://..." class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
@@ -108,10 +109,10 @@
                     </div>
                 </div>
 
-                <!-- Tabela e Gráfico (Omitido por brevidade) -->
+                <!-- Tabela de Testes Recentes -->
                 <div class="bg-white rounded-lg shadow-sm border border-gray-200">
                     <div class="p-4 border-b border-gray-200">
-                        <h2 class="text-lg font-semibold text-gray-900">Histórico Recente</h2>
+                        <h2 class="text-lg font-semibold text-gray-900">Histórico Recente (Dados do Supabase)</h2>
                     </div>
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-gray-500">
@@ -123,28 +124,15 @@
                                     <th class="px-6 py-3 text-right">Ação</th>
                                 </tr>
                             </thead>
-                            <tbody class="divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 font-medium text-gray-900">Verificação de Login</td>
-                                    <td class="px-6 py-4"><span class="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs">Sucesso</span></td>
-                                    <td class="px-6 py-4">Há 2 min</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button id="btn-run-1" onclick="executarTeste(1)" class="text-blue-600 hover:text-blue-900">Re-executar</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 font-medium text-gray-900">Checkout Carrinho</td>
-                                    <td class="px-6 py-4"><span class="bg-red-100 text-red-800 px-2 py-1 rounded-full text-xs">Falha</span></td>
-                                    <td class="px-6 py-4">Há 1 hora</td>
-                                    <td class="px-6 py-4 text-right">
-                                        <button id="btn-run-2" onclick="executarTeste(2)" class="text-blue-600 hover:text-blue-900">Re-executar</button>
-                                    </td>
-                                </tr>
+                            <!-- ID da tabela para ser preenchida pelo runTest.js -->
+                            <tbody id="testes-tabela-body" class="divide-y divide-gray-200">
+                                <tr><td colspan="4" class="text-center py-4 text-gray-500">A carregar...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
+                <!-- Gráfico de Tendência (Opcional, mas dá um toque pro) -->
                 <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
                     <h2 class="text-lg font-semibold text-gray-900 mb-4">Taxa de Sucesso dos Testes</h2>
                     <canvas id="successChart" height="100"></canvas>
@@ -158,9 +146,7 @@
     <script>
         lucide.createIcons();
         
-        // Mensagem de Verificação do HTML
-        console.log("DASHBOARD.HTML (HTML) VISUALIZADO COM SUCESSO!");
-
+        // Dados de exemplo para o gráfico 
         const ctx = document.getElementById('successChart').getContext('2d');
         const successChart = new Chart(ctx, {
             type: 'line',
@@ -169,7 +155,7 @@
                 datasets: [{
                     label: 'Taxa de Sucesso (%)',
                     data: [85, 88, 92, 95, 90, 98, 97],
-                    borderColor: 'rgb(37, 99, 235)',
+                    borderColor: 'rgb(37, 99, 235)', // Tailwind blue-600
                     backgroundColor: 'rgba(37, 99, 235, 0.1)',
                     tension: 0.4,
                     fill: true
@@ -183,9 +169,10 @@
             }
         });
     </script>
-    <!-- Chamada dos scripts de Lógica -->
+    <!-- Módulos JS: Agora importamos runTest.js para a listagem -->
     <script type="module" defer src="js/criarTeste.js"></script>
     <script type="module" defer src="js/executarTeste.js"></script>
+    <script type="module" defer src="js/runTest.js"></script>
 </body>
 </html>
 
