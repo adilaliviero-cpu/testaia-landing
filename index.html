@@ -3,56 +3,49 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TestAIA — Plano Premium | 100 Testes / mês</title>
-  <meta name="description" content="TestAIA — Testes automatizados com IA. Plano Premium: 100 testes por mês por €39,90. Relatórios, performance e suporte prioritário.">
-  <meta property="og:title" content="TestAIA — Plano Premium" />
+  <title>TestAIA — Testes Automatizados com IA</title>
+  <meta name="description" content="TestAIA — Testes automatizados com IA. Planos: Freelancer €39,90 (100 testes/mês), Pro €99 (Ilimitado) e Enterprise - soluções dedicadas." />
+  <meta property="og:title" content="TestAIA — Testes Automatizados" />
   <meta property="og:description" content="100 testes por mês por €39,90 — Testes UI, API, funcionais e performance com IA." />
+  <meta name="theme-color" content="#0b1020">
 
-  <!-- Tailwind CDN (rápido para protótipo) -->
+  <!-- Tailwind CDN para protótipo -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
-    :root{
-      --bg-900: #0b1020;
-      --bg-800: #0f1724;
-      --accent-1: #6c5ce7; /* roxo-lilás */
-      --accent-2: #2563eb; /* azul */
-      --muted: #94a3b8;
-      --glass: rgba(255,255,255,0.04);
-    }
-    body { font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: linear-gradient(180deg, var(--bg-900) 0%, var(--bg-800) 100%); color: #e6eef8; }
-    .gradient-accent { background: linear-gradient(90deg, var(--accent-2), var(--accent-1)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    :root{ --bg-900:#0b1020; --bg-800:#0f1724; --accent-1:#6c5ce7; --accent-2:#2563eb; --muted:#94a3b8; }
+    html,body{height:100%}
+    body { font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: linear-gradient(180deg,var(--bg-900)0%,var(--bg-800)100%); color: #e6eef8; }
+    .gradient-accent { background: linear-gradient(90deg,var(--accent-2),var(--accent-1)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
     .glass-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.04); backdrop-filter: blur(6px); }
-    /* Acessibilidade no foco */
     .focus-ring:focus { box-shadow: 0 0 0 4px rgba(99,102,241,0.12); outline: none; }
-    /* Micro-interactions */
-    .btn-ghost:hover { transform: translateY(-3px); }
-    .card-hover:hover { transform: translateY(-6px) scale(1.01); box-shadow: 0 20px 40px rgba(2,6,23,0.6); }
+    .card-hover:hover{ transform: translateY(-6px) scale(1.01); box-shadow:0 20px 40px rgba(2,6,23,0.6); }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
 </head>
 <body class="antialiased">
 
   <!-- NAV -->
   <header class="fixed top-0 left-0 right-0 z-40">
-    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between backdrop-blur-sm glass-card rounded-b-2xl shadow-sm">
+    <nav class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between backdrop-blur-sm glass-card rounded-b-2xl shadow-sm" aria-label="Main navigation">
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#13294b] to-[#07102a] shadow-inner">
+        <div class="w-10 h-10 flex items-center justify-center rounded-lg bg-gradient-to-br from-[#13294b] to-[#07102a] shadow-inner" aria-hidden>
           <i data-lucide="cpu" class="text-white w-5 h-5"></i>
         </div>
-        <span class="text-white font-extrabold text-lg">TestAIA</span>
+        <a href="#inicio" class="text-white font-extrabold text-lg">TestAIA</a>
       </div>
 
-      <div class="hidden md:flex items-center gap-8 text-sm text-gray-300">
+      <div class="hidden md:flex items-center gap-8 text-sm text-gray-300" role="navigation">
         <a href="#inicio" class="hover:text-white transition">Início</a>
         <a href="#solucoes" class="hover:text-white transition">Funcionalidades</a>
-        <a href="#planos" class="hover:text-white transition">Plano</a>
+        <a href="#planos" class="hover:text-white transition">Preços</a>
         <a href="#contato" class="hover:text-white transition">Contato</a>
       </div>
 
       <div class="flex items-center gap-3">
-        <a href="#planos" class="hidden md:inline-block px-4 py-2 rounded-lg border border-transparent text-sm font-medium bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] hover:opacity-95 shadow">Assinar Plano</a>
+        <a href="#planos" class="hidden md:inline-block px-4 py-2 rounded-lg bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] text-white font-medium shadow">Assinar Plano</a>
         <button id="open-auth-modal" class="px-4 py-2 rounded-lg text-sm font-medium border border-transparent bg-transparent hover:bg-white/5 transition focus-ring">Entrar</button>
       </div>
     </nav>
@@ -60,46 +53,35 @@
 
   <!-- HERO -->
   <main class="pt-28">
-    <section id="inicio" class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="inicio" class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" aria-labelledby="hero-title">
       <div>
-        <p class="inline-block text-sm px-3 py-1 rounded-full bg-white/6 text-[#cfe0ff] mb-6">Lançamento Oficial · Plano Único</p>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-          Testes automatizados com <span class="gradient-accent">IA de verdade</span><br class="hidden md:block"> — confiáveis, rápidos e fáceis.
-        </h1>
-        <p class="mt-6 text-gray-300 max-w-xl">
-          Simplificamos QA com automação inteligente: criação automática de cenários, comparações visuais precisas, testes de API e performance. Tudo gerido por IA, pronto para integrar no teu fluxo.
-        </p>
+        <p class="inline-block text-sm px-3 py-1 rounded-full bg-white/6 text-[#cfe0ff] mb-6">Lançamento Oficial · Planos Profissionais</p>
+        <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold leading-tight">Testes automatizados com <span class="gradient-accent">IA de verdade</span> — confiáveis, rápidos e fáceis.</h1>
+        <p class="mt-6 text-gray-300 max-w-xl">Automatize QA sem esforço: gere cenários, execute suites, valide UI/API e monitore a qualidade com insights acionáveis.</p>
 
         <div class="mt-10 flex flex-wrap gap-4">
-          <a href="#planos" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] text-white font-semibold shadow-lg">
-            Assinar Plano — €39,90 / mês
-          </a>
-
-          <button id="open-auth-modal-hero" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-white bg-transparent hover:bg-white/3 transition">
-            Testar Conta (Entrar / Registar)
-            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </button>
+          <a href="#planos" class="inline-flex items-center gap-3 px-6 py-3 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] text-white font-semibold shadow-lg">Ver Planos</a>
+          <button id="open-auth-modal-hero" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/10 text-white bg-transparent hover:bg-white/3 transition">Registar / Testar Conta</button>
         </div>
 
-        <div class="mt-8 grid grid-cols-2 gap-4 max-w-md text-sm">
+        <div class="mt-8 grid grid-cols-2 gap-4 max-w-md text-sm" aria-hidden>
           <div class="flex items-start gap-3">
             <i data-lucide="check" class="w-5 h-5 text-[#6ee7b7] mt-1"></i>
             <div>
               <div class="text-gray-200 font-semibold">100 testes / mês</div>
-              <div class="text-gray-400 text-xs">Cobre fluxos principais e deploys</div>
+              <div class="text-gray-400 text-xs">Plano Freelancer</div>
             </div>
           </div>
           <div class="flex items-start gap-3">
             <i data-lucide="zap" class="w-5 h-5 text-[#ffd166] mt-1"></i>
             <div>
               <div class="text-gray-200 font-semibold">Execução paralela</div>
-              <div class="text-gray-400 text-xs">Menos espera, mais cobertura</div>
+              <div class="text-gray-400 text-xs">Reduza tempos de espera</div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Mockup / painel de destaque -->
       <div class="relative">
         <div class="rounded-2xl overflow-hidden glass-card border border-white/5 p-6 shadow-2xl">
           <div class="flex items-center justify-between mb-4">
@@ -114,7 +96,6 @@
           </div>
 
           <div class="h-48 bg-gradient-to-b from-white/5 to-white/3 rounded-lg p-4 flex items-center justify-center text-gray-300">
-            <!-- Placeholder para dashboard / gráfico; substitua por imagem real -->
             <div class="text-center">
               <div class="text-xl font-semibold text-white">Dashboard — TestAIA</div>
               <div class="text-sm mt-2">Relatórios, diffs visuais e execuções</div>
@@ -134,63 +115,93 @@
       <p class="text-gray-300 max-w-3xl mb-10">Cobertura completa: da UI à API, performance, segurança e acessibilidade — com automação potenciada por IA.</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <article class="p-6 rounded-2xl glass-card card-hover">
+        <article class="p-6 rounded-2xl glass-card card-hover" aria-labelledby="f1">
           <div class="w-12 h-12 rounded-md bg-[#091126] flex items-center justify-center mb-4"><i data-lucide="monitor" class="w-5 h-5 text-[#6c5ce7]"></i></div>
-          <h3 class="font-semibold text-white mb-2">Teste Visual (Visual Regression)</h3>
+          <h3 id="f1" class="font-semibold text-white mb-2">Teste Visual (Visual Regression)</h3>
           <p class="text-gray-400 text-sm">Comparação inteligente de screenshots, diffs com highlight e filtragem por falsos positivos.</p>
         </article>
 
-        <article class="p-6 rounded-2xl glass-card card-hover">
+        <article class="p-6 rounded-2xl glass-card card-hover" aria-labelledby="f2">
           <div class="w-12 h-12 rounded-md bg-[#091126] flex items-center justify-center mb-4"><i data-lucide="flow" class="w-5 h-5 text-[#2563eb]"></i></div>
-          <h3 class="font-semibold text-white mb-2">Teste Funcional (E2E)</h3>
+          <h3 id="f2" class="font-semibold text-white mb-2">Teste Funcional (E2E)</h3>
           <p class="text-gray-400 text-sm">Gravação e reprodução de cenários, validação de fluxos críticos (login, checkout, pagamentos).</p>
         </article>
 
-        <article class="p-6 rounded-2xl glass-card card-hover">
+        <article class="p-6 rounded-2xl glass-card card-hover" aria-labelledby="f3">
           <div class="w-12 h-12 rounded-md bg-[#091126] flex items-center justify-center mb-4"><i data-lucide="cpu" class="w-5 h-5 text-[#6ee7b7]"></i></div>
-          <h3 class="font-semibold text-white mb-2">APIs & Integrações</h3>
+          <h3 id="f3" class="font-semibold text-white mb-2">APIs & Integrações</h3>
           <p class="text-gray-400 text-sm">Testes de endpoints, validação de schemas e mocking inteligente para testes isolados.</p>
         </article>
       </div>
     </section>
 
-    <!-- PLANO ÚNICO -->
-    <section id="planos" class="max-w-4xl mx-auto px-6 py-20">
-      <div class="bg-gradient-to-b from-white/4 to-white/2 rounded-3xl p-10 glass-card border border-white/6 shadow-2xl">
-        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
-            <h3 class="text-3xl font-extrabold">Plano Premium</h3>
-            <p class="mt-2 text-gray-300 max-w-xl">100 testes automatizados por mês — tudo o que a tua equipa precisa para lançar com confiança.</p>
-          </div>
-
-          <div class="text-right">
-            <div class="text-4xl md:text-5xl font-bold text-white">€39,90 <span class="text-sm text-gray-300 font-medium">/ mês</span></div>
-            <div class="text-sm text-gray-400 mt-1">100 testes IA • Execução paralela • Relatórios avançados</div>
-          </div>
+    <!-- PLANOS PROFISSIONAIS -->
+    <section id="planos" class="py-16 bg-transparent">
+      <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-extrabold text-white">Planos para cada etapa do seu negócio</h2>
+          <p class="text-gray-300 max-w-2xl mx-auto mt-4">Escolha entre um plano pensado para freelancers e pequenas empresas, um plano Pro para equipas que crescem e uma solução Enterprise para organizações críticas.</p>
         </div>
 
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          <ul class="space-y-3 text-gray-200">
-            <li>✔ 100 Testes por mês</li>
-            <li>✔ Testes Visuais e Funcionais</li>
-            <li>✔ Testes API e Performance</li>
-            <li>✔ Execução paralela</li>
-          </ul>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
 
-          <div>
-            <ul class="space-y-3 text-gray-200">
-              <li>✔ Relatórios detalhados com insights de IA</li>
-              <li>✔ Histórico de execuções</li>
-              <li>✔ Integração CI/CD</li>
-              <li>✔ Suporte prioritário</li>
+          <!-- FREELANCER / PEQUENAS EMPRESAS -->
+          <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200 text-center flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Freelancer</h3>
+              <p class="text-sm text-gray-500 mb-6">Ideal para freelancers e pequenas empresas que precisam começar rapidamente.</p>
+
+              <div class="text-4xl font-extrabold text-blue-600 mb-4">€39,90 <span class="text-sm font-medium text-gray-500">/ mês</span></div>
+              <div class="text-sm text-gray-600 mb-6">100 testes por mês • Testes UI, Funcionais e Relatórios</div>
+
+              <ul class="text-left space-y-3 text-gray-600 mb-6">
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> 100 Testes por mês</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Testes Visuais e Funcionais</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Relatórios em PDF</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Painel com histórico</li>
+              </ul>
+            </div>
+            <button id="open-auth-modal-free" class="w-full py-3 px-4 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-semibold">Assinar Plano Freelancer</button>
+          </div>
+
+          <!-- PLANO PRO -->
+          <div class="bg-gradient-to-br from-purple-600 to-indigo-700 text-white border border-purple-400 rounded-2xl p-10 shadow-2xl transform scale-105">
+            <div class="inline-block mb-4 px-4 py-1 bg-black/20 rounded-full text-sm font-semibold tracking-wide">MAIS POPULAR</div>
+            <h3 class="text-2xl font-semibold mb-2">Plano Pro</h3>
+            <p class="text-purple-100 mb-4">Para equipas de QA em crescimento.</p>
+
+            <p class="text-4xl md:text-5xl font-bold mb-6">€99 <span class="text-lg font-normal text-purple-200">/ mês</span></p>
+
+            <ul class="text-purple-100 space-y-3 mb-8 text-left">
+              <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Testes Ilimitados</li>
+              <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Todos os Tipos de Teste (Funcional, Visual, Performance)</li>
+              <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Integração CI/CD (GitHub / GitLab)</li>
+              <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Suporte Prioritário</li>
+              <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-yellow-400 mr-2"></i> Execução Paralela</li>
             </ul>
-          </div>
-        </div>
 
-        <div class="mt-8">
-          <button id="open-auth-modal-plan" class="w-full md:w-1/2 py-3 rounded-xl bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] text-white font-semibold shadow-lg">
-            Assinar Plano — €39,90 / mês
-          </button>
+            <button id="open-auth-modal-pro" class="w-full py-3 px-4 rounded-xl bg-black/30 hover:bg-black/40 font-semibold shadow-xl">Começar Plano Pro</button>
+          </div>
+
+          <!-- PLANO ENTERPRISE -->
+          <div class="bg-gray-50 p-8 rounded-2xl shadow-lg border border-gray-200 text-center flex flex-col justify-between">
+            <div>
+              <h3 class="text-2xl font-bold text-gray-900 mb-2">Plano Enterprise</h3>
+              <p class="text-sm text-gray-500 mb-6">Para grandes empresas com alta demanda.</p>
+
+              <div class="text-4xl font-extrabold text-blue-600 mb-4">Personalizado</div>
+              <div class="text-sm text-gray-600 mb-6">Soluções dedicadas, segurança e SLA.</div>
+
+              <ul class="text-left space-y-3 text-gray-600 mb-6">
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Todos os recursos do Plano Pro</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Servidores Dedicados e Isolamento de Dados</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> SLA Garantido</li>
+                <li class="flex items-center"><i data-lucide="check" class="h-5 w-5 text-green-500 mr-2"></i> Formação e Consultoria Dedicada</li>
+              </ul>
+            </div>
+            <a href="#contato" class="w-full py-3 px-4 rounded-xl text-white bg-blue-600 hover:bg-blue-700 font-semibold">Falar com Vendas</a>
+          </div>
+
         </div>
       </div>
     </section>
@@ -232,9 +243,9 @@
   </footer>
 
   <!-- MODAL AUTENTICAÇÃO -->
-  <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 opacity-0 invisible transition-opacity">
+  <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 opacity-0 invisible transition-opacity" aria-hidden="true">
     <div class="w-full max-w-md p-8 rounded-2xl glass-card border border-white/6 relative">
-      <button id="close-auth-modal" class="absolute right-4 top-4 text-gray-300"><i data-lucide="x" class="w-6 h-6"></i></button>
+      <button id="close-auth-modal" class="absolute right-4 top-4 text-gray-300" aria-label="Fechar modal"><i data-lucide="x" class="w-6 h-6"></i></button>
 
       <div class="text-center mb-6">
         <i data-lucide="cpu" class="w-10 h-10 text-white mx-auto mb-2"></i>
@@ -242,12 +253,12 @@
         <p class="text-gray-300 text-sm">Entre ou crie a sua conta para subscrever o plano.</p>
       </div>
 
-      <div class="flex border rounded-xl overflow-hidden mb-6">
-        <button id="modal-btn-show-login" class="flex-1 py-2 bg-white/6 text-white font-medium">Entrar</button>
-        <button id="modal-btn-show-register" class="flex-1 py-2 bg-transparent text-gray-300">Registar</button>
+      <div class="flex border rounded-xl overflow-hidden mb-6" role="tablist">
+        <button id="modal-btn-show-login" class="flex-1 py-2 bg-white/6 text-white font-medium" role="tab" aria-selected="true">Entrar</button>
+        <button id="modal-btn-show-register" class="flex-1 py-2 bg-transparent text-gray-300" role="tab">Registar</button>
       </div>
 
-      <form id="form-login" class="space-y-4">
+      <form id="form-login" class="space-y-4" aria-hidden="false">
         <div>
           <label class="text-sm text-gray-300">Email</label>
           <input id="login-email" type="email" required class="mt-1 w-full p-3 rounded-lg bg-transparent border border-white/6 text-white focus-ring" />
@@ -259,7 +270,7 @@
         <button type="submit" class="w-full py-3 rounded-lg bg-gradient-to-r from-[#2563eb] to-[#6c5ce7] font-semibold">Entrar</button>
       </form>
 
-      <form id="form-register" class="space-y-4 hidden">
+      <form id="form-register" class="space-y-4 hidden" aria-hidden="true">
         <div>
           <label class="text-sm text-gray-300">Nome Completo</label>
           <input id="register-name" type="text" required class="mt-1 w-full p-3 rounded-lg bg-transparent border border-white/6 text-white focus-ring" />
@@ -274,6 +285,9 @@
         </div>
         <button type="submit" class="w-full py-3 rounded-lg bg-purple-600 font-semibold">Criar Conta</button>
       </form>
+
+      <p class="mt-6 text-xs text-gray-500 text-center">Ao entrar, concorda com os nossos Termos de Serviço.</p>
+
     </div>
   </div>
 
@@ -281,93 +295,47 @@
   <script>
     lucide.createIcons();
 
-    // Utility for safe query
-    const $ = (sel) => document.querySelector(sel);
-    const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => Array.from(document.querySelectorAll(s));
 
-    // Modal elements
-    const authModal = $("#auth-modal");
-    const openBtns = [
-      $("#open-auth-modal"),
-      $("#open-auth-modal-hero"),
-      $("#open-auth-modal-plan"),
-      $("#open-auth-modal-pro"),
-      $("#open-auth-modal-free")
-    ].filter(Boolean);
+    const authModal = $('#auth-modal');
+    const openBtns = [$('#open-auth-modal'), $('#open-auth-modal-hero'), $('#open-auth-modal-free'), $('#open-auth-modal-pro')].filter(Boolean);
+    const closeBtn = $('#close-auth-modal');
+    const showLogin = $('#modal-btn-show-login');
+    const showRegister = $('#modal-btn-show-register');
+    const formLogin = $('#form-login');
+    const formRegister = $('#form-register');
 
-    const closeBtn = $("#close-auth-modal");
-    const showLogin = $("#modal-btn-show-login");
-    const showRegister = $("#modal-btn-show-register");
-    const formLogin = $("#form-login");
-    const formRegister = $("#form-register");
-
-    function openModal(showRegisterDefault = false) {
-      authModal.classList.remove("invisible", "opacity-0");
-      authModal.classList.add("opacity-100");
-      if (showRegisterDefault) toggleForms(false);
-      else toggleForms(true);
-      // make visible
-      authModal.style.visibility = "visible";
+    function openModal(showRegister=false){
+      authModal.classList.remove('invisible','opacity-0');
+      authModal.classList.add('opacity-100');
+      authModal.style.visibility = 'visible';
+      toggleForms(!showRegister);
+    }
+    function closeModal(){
+      authModal.classList.add('opacity-0','invisible');
+      authModal.style.visibility = 'hidden';
+    }
+    function toggleForms(showLoginForm){
+      if(showLoginForm){ formLogin.classList.remove('hidden'); formLogin.setAttribute('aria-hidden','false'); formRegister.classList.add('hidden'); formRegister.setAttribute('aria-hidden','true'); showLogin.classList.add('bg-white/6'); showRegister.classList.remove('bg-white/6'); }
+      else { formLogin.classList.add('hidden'); formLogin.setAttribute('aria-hidden','true'); formRegister.classList.remove('hidden'); formRegister.setAttribute('aria-hidden','false'); showRegister.classList.add('bg-white/6'); showLogin.classList.remove('bg-white/6'); }
     }
 
-    function closeModal() {
-      authModal.classList.add("opacity-0", "invisible");
-      authModal.style.visibility = "hidden";
-    }
+    openBtns.forEach(b=>b.addEventListener('click',()=>openModal()));
+    if(closeBtn) closeBtn.addEventListener('click',closeModal);
+    if(showLogin) showLogin.addEventListener('click',()=>toggleForms(true));
+    if(showRegister) showRegister.addEventListener('click',()=>toggleForms(false));
 
-    function toggleForms(showLoginForm) {
-      if (showLoginForm) {
-        formLogin.classList.remove("hidden");
-        formRegister.classList.add("hidden");
-        showLogin.classList.add("bg-white/6");
-        showRegister.classList.remove("bg-white/6");
-      } else {
-        formLogin.classList.add("hidden");
-        formRegister.classList.remove("hidden");
-        showRegister.classList.add("bg-white/6");
-        showLogin.classList.remove("bg-white/6");
-      }
-    }
+    // fechar clicando fora
+    document.addEventListener('click',(e)=>{ if(!authModal) return; if(authModal.style.visibility!=='visible') return; const modalCard = authModal.querySelector('.glass-card, .rounded-2xl, .p-8'); if(!modalCard) return; if(!modalCard.contains(e.target) && !e.target.closest('#open-auth-modal')) closeModal(); });
 
-    openBtns.forEach(b => b.addEventListener("click", () => openModal()));
-    if (closeBtn) closeBtn.addEventListener("click", closeModal);
-    if (showLogin) showLogin.addEventListener("click", () => toggleForms(true));
-    if (showRegister) showRegister.addEventListener("click", () => toggleForms(false));
+    // Formspree contact
+    const contactForm = $('#contact-formspree');
+    const contactMessage = $('#contact-message');
+    const contactBtn = $('#contact-submit-btn');
+    if(contactForm){ contactForm.addEventListener('submit', async (ev)=>{ ev.preventDefault(); contactBtn.disabled=true; contactBtn.textContent='A enviar...'; contactMessage.classList.add('hidden'); const resp = await fetch(contactForm.action,{ method:contactForm.method, body:new FormData(contactForm), headers:{ Accept:'application/json' }}); contactBtn.disabled=false; contactBtn.textContent='Solicitar Demonstração'; contactMessage.classList.remove('hidden'); if(resp.ok){ contactMessage.textContent='✅ Mensagem enviada! Responderemos em breve.'; contactMessage.className='mt-4 p-3 rounded-md bg-green-100 text-green-900'; contactForm.reset(); } else { contactMessage.textContent='❌ Erro ao enviar. Tente novamente.'; contactMessage.className='mt-4 p-3 rounded-md bg-red-100 text-red-900'; } }); }
 
-    // Fechar modal ao clicar fora do cartão
-    document.addEventListener("click", (e) => {
-      if (!authModal) return;
-      const modalCard = authModal.querySelector(".glass-card, .rounded-2xl, .rounded-3xl, .p-8");
-      if (!modalCard) return;
-      if (authModal.style.visibility === "visible" && !modalCard.contains(e.target) && !e.target.closest("#open-auth-modal")) {
-        closeModal();
-      }
-    });
-
-    // Formspree AJAX handling (contact)
-    const contactForm = $("#contact-formspree");
-    const contactMessage = $("#contact-message");
-    const contactBtn = $("#contact-submit-btn");
-    if (contactForm) {
-      contactForm.addEventListener("submit", async (ev) => {
-        ev.preventDefault();
-        contactBtn.disabled = true;
-        contactBtn.textContent = "A enviar...";
-        contactMessage.classList.add("hidden");
-        const resp = await fetch(contactForm.action, { method: contactForm.method, body: new FormData(contactForm), headers: { Accept: "application/json" }});
-        contactBtn.disabled = false;
-        contactBtn.textContent = "Solicitar Demonstração";
-        contactMessage.classList.remove("hidden");
-        if (resp.ok) {
-          contactMessage.textContent = "✅ Mensagem enviada! Responderemos em breve.";
-          contactMessage.className = "mt-4 p-3 rounded-md bg-green-100 text-green-900";
-          contactForm.reset();
-        } else {
-          contactMessage.textContent = "❌ Erro ao enviar. Tente novamente.";
-          contactMessage.className = "mt-4 p-3 rounded-md bg-red-100 text-red-900";
-        }
-      });
-    }
+    // TODO: integrar Supabase / Stripe para autenticação e pagamentos
   </script>
 </body>
 </html>
