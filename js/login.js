@@ -1,52 +1,76 @@
 // js/login.js
-// Liga o Login ao Supabase (MODO REAL)
-
-// =========================================================================
-// ATENÇÃO: SUBSTITUA ESTAS DUAS LINHAS PELAS SUAS CHAVES REAIS DO SUPABASE
-// =========================================================================
-const SUPABASE_URL = "https://njgxfeemwybiuzoymdhw.supabase.co"; 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NTI4OTAsImV4cCI6MjA4MDQyODg5MH0.-eldoV3CvMp0QmwuDxCFPjr4ztwJ1wZp4pB6ZP2TJJU"; 
-// =========================================================================
+// Login com Supabase (PRODUÇÃO)
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+// ⚠️ Idealmente mover para variáveis de ambiente
+const SUPABASE_URL = "https://njgxfeemwybiuzoymdhw.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NTI4OTAsImV4cCI6MjA4MDQyODg5MH0.-eldoV3CvMp0QmwuDxCFPjr4ztwJ1wZp4pB6ZP2TJJU";
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('form-login'); 
+  const form = document.getElementById('form-login');
+  if (!form) return;
 
-    if(loginForm) {
-        console.log("LOGIN FORMULÁRIO DETETADO! (ID #form-login)");
-        
-        loginForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-            if (!email || !password) {
-                alert("Por favor, preencha todos os campos do LOGIN.");
-                return;
-            }
-            
-            // 1. Tenta fazer Login no Supabase Auth
-            const { error } = await supabase.auth.signInWithPassword({
-                email: email,
-                password: password
-            });
+    const button = form.querySelector('button[type="submit"]');
+    button.disabled = true;
+    button.textContent = "A entrar...";
 
-            if (error) {
-                alert(`Erro no Login: Verifique o email/senha ou se confirmou o email. Erro: ${error.message}`);
-                console.error("Erro Supabase:", error);
-            } else {
-                // 2. Login bem-sucedido, redireciona para o Dashboard
-                alert("Login bem-sucedido! Acedendo ao Painel de Controlo.");
-                window.location.href = "dashboard.html";
-            }
-        });
-    } else {
-        console.log("login.js carregado com sucesso. Nenhum formulário de login específico encontrado (OK).");
+    const email = document.getElementById('login-email')?.value.trim();
+    const password = document.getElementById('login-password')?.value;
+
+    // 🔎 Validações básicas
+    if (!email || !password) {
+      alert("Email e palavra-passe são obrigatórios.");
+      resetButton(button);
+      return;
     }
+
+    if (!validateEmail(email)) {
+      alert("Introduza um email válido.");
+      resetButton(button);
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      if (error) {
+        alert("Falha no login. Verifique o email, a palavra-passe e se confirmou o email.");
+        console.error(error);
+        resetButton(button);
+        return;
+      }
+
+      // 🔐 Sessão criada com sucesso
+      if (data.session) {
+        window.location.href = "dashboard.html";
+      }
+
+    } catch (err) {
+      console.error("Erro inesperado:", err);
+      alert("Erro de comunicação. Tente novamente.");
+      resetButton(button);
+    }
+  });
 });
 
+// ======================
+// Funções auxiliares
+// ======================
 
+function resetButton(button) {
+  button.disabled = false;
+  button.textContent = "Entrar";
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
