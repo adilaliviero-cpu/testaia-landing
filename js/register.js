@@ -2,10 +2,10 @@
 // Liga o Registo ao Supabase (MODO REAL)
 
 // =========================================================================
-// ATENÇÃO: CONFIRMA QUE O URL E A CHAVE SÃO OS MESMOS DO TEU SUPABASE
+// CHAVES REAIS DO SUPABASE
 // =========================================================================
-const SUPABASE_URL = "https://njgxfeemwybiuzoymdhw.supabase.co"; 
-const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDE3NDQ3MzEsImV4cCI6MTg1OTQxMTEzMX0.5UoZkqfG0rA5u1uQzyx6mY7eC0Ts0-FU0UXDvabJ1AoeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5qZ3hmZWVtd3liaXV6b3ltZGh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQ4NTI4OTAsImV4cCI6MjA4MDQyODg5MH0.-eldoV3CvMp0QmwuDxCFPjr4ztwJ1wZp4pB6ZP2TJJU";
+const SUPABASE_URL = "https://nlgxfeemybrizoydzhw.supabase.co"; 
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5sZ3hmZWVteWJyaXpveWR6aHciLCJyb2xlIjoiYW5vbiIsImlhdCI6MTcwMTc0NDczMSwiZXhwIjoxODU5NDExMTMxfQ.CzFuYS6XKvEwW5OsAAPAcHvuo-NVE4PUwDSKgqK9Yas"; 
 // =========================================================================
 
 import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm';
@@ -15,50 +15,57 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 document.addEventListener('DOMContentLoaded', () => {
     const registerForm = document.getElementById('form-register'); 
 
-    if (!registerForm) {
-        console.log("register.js carregado, mas nenhum formulário #form-register foi encontrado.");
-        return;
-    }
+    if (registerForm) {
+        registerForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-    console.log("FORMULÁRIO DE REGISTO ENCONTRADO! (#form-register)");
-
-    registerForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const name = document.getElementById('register-name')?.value.trim();
-        const email = document.getElementById('register-email')?.value.trim();
-        const password = document.getElementById('register-password')?.value.trim();
-
-        if (!name || !email || !password) {
-            alert("Por favor, preencha todos os campos do Registo.");
-            return;
-        }
-
-        try {
-            // 1. Tenta registar no Supabase Auth
-            const { data, error } = await supabase.auth.signUp({
-                email,
-                password,
-                options: {
-                    data: { full_name: name } // Guarda o nome do utilizador no perfil
-                }
-            });
-
-            if (error) {
-                alert(`❌ Erro no Registo: ${error.message}`);
-                console.error("Erro Supabase:", error);
+            const submitButton = registerForm.querySelector('button[type="submit"]');
+            
+            // 1. Inicia o Processo: Desativa o botão
+            submitButton.disabled = true;
+            submitButton.textContent = "A registar...";
+            
+            const name = document.getElementById('register-name')?.value;
+            const email = document.getElementById('register-email')?.value;
+            const password = document.getElementById('register-password')?.value;
+            
+            if (!name || !email || !password) {
+                alert("Por favor, preencha todos os campos do Registo.");
+                submitButton.disabled = false;
+                submitButton.textContent = "Criar Conta";
                 return;
             }
 
-            if (data.user) {
-                alert("✅ Sucesso! Foi enviado um email para confirmar a sua conta. Confirme antes de fazer Login.");
-                window.location.href = 'auth.html'; 
-            }
+            try {
+                // 2. Tenta registar no Supabase Auth
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: { full_name: name } 
+                    }
+                });
 
-        } catch (err) {
-            console.error("Erro inesperado:", err);
-            alert("Ocorreu um erro inesperado. Verifique a consola.");
-        }
-    });
+                // 3. Processa o Resultado
+                if (error) {
+                    alert(`Erro no Registo: ${error.message}`);
+                    console.error("Erro Supabase:", error);
+                } else if (data.user) {
+                    alert("Sucesso! Foi enviado um email para confirmar a sua conta. Por favor, confirme antes de fazer Login.");
+                    // Fecha o modal e redireciona para a home page (index.html)
+                    window.location.href = 'index.html'; 
+                    return;
+                }
+            } catch (runtimeError) {
+                // Erro de comunicação ou de rede
+                console.error("Erro de Runtime ao registar:", runtimeError);
+                alert("Erro de comunicação: Verifique a sua ligação ou a chave do Supabase.");
+            }
+            
+            // 4. Finaliza o Processo: Reativa o botão em caso de falha
+            submitButton.disabled = false;
+            submitButton.textContent = "Criar Conta";
+        });
+    }
 });
 
