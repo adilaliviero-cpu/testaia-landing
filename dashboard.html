@@ -1,178 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - TestAIA</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
-    <style>body { font-family: 'Inter', sans-serif; }</style>
+  <title>Dashboard | TestaIA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100">
 
-    <div class="flex h-screen overflow-hidden">
-        
-        <!-- Barra Lateral (Sidebar) -->
-        <aside class="w-64 bg-gray-900 text-white flex flex-col hidden md:flex">
-            <div class="h-16 flex items-center justify-center border-b border-gray-800">
-                <i data-lucide="cpu" class="h-6 w-6 text-blue-400 mr-2"></i>
-                <span class="font-bold text-lg">TestAIA</span>
-            </div>
-            <nav class="flex-1 px-2 py-4 space-y-2">
-                <a href="#" class="flex items-center px-4 py-2 bg-gray-800 text-white rounded-md">
-                    <i data-lucide="layout-dashboard" class="mr-3 h-5 w-5"></i>
-                    Visão Geral
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md">
-                    <i data-lucide="play-circle" class="mr-3 h-5 w-5"></i>
-                    Meus Testes
-                </a>
-                <a href="#" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-800 hover:text-white rounded-md">
-                    <i data-lucide="settings" class="mr-3 h-5 w-5"></i>
-                    Configurações
-                </a>
-            </nav>
-            <div class="p-4 border-t border-gray-800">
-                <p class="text-xs text-gray-500 mb-2">ID do Utilizador Logado (Debug):</p>
-                <p id="user-id-display" class="text-xs font-mono break-all text-blue-300 mb-4">A carregar...</p>
-                <button onclick="window.location.href='index.html'" class="flex items-center w-full text-gray-400 hover:text-white">
-                    <i data-lucide="log-out" class="mr-3 h-5 w-5"></i>
-                    Sair
-                </button>
-            </div>
-        </aside>
+<div class="flex min-h-screen">
+  <aside class="w-64 bg-slate-900 text-white p-6">
+    <h2 class="font-bold text-xl">TestaIA</h2>
+    <button onclick="createTest()" class="mt-6">
+      Novo Teste
+    </button>
+  </aside>
 
-        <!-- Conteúdo Principal -->
-        <main class="flex-1 flex flex-col overflow-y-auto">
-            
-            <header class="bg-white shadow-sm h-16 flex items-center justify-between px-4 md:hidden">
-                <div class="font-bold text-gray-900">TestAIA</div>
-                <button class="text-gray-500"><i data-lucide="menu" class="h-6 w-6"></i></button>
-            </header>
+  <main class="flex-1 p-8">
+    <h1 class="text-2xl font-bold mb-6">Meus Testes</h1>
+    <div id="tests"></div>
+  </main>
+</div>
 
-            <div class="p-6">
-                <h1 class="text-2xl font-bold text-gray-900 mb-6">Painel de Controlo</h1>
-
-                <!-- Cartões de Resumo -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-blue-100 text-blue-600">
-                                <i data-lucide="activity" class="h-6 w-6"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm text-gray-500">Testes Totais</p>
-                                <p id="testes-executados" class="text-lg font-bold text-gray-900">--</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-green-100 text-green-600">
-                                <i data-lucide="check-circle" class="h-6 w-6"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm text-gray-500">Sucesso</p>
-                                <p id="taxa-sucesso" class="text-lg font-bold text-gray-900">--</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
-                        <div class="flex items-center">
-                            <div class="p-3 rounded-full bg-purple-100 text-purple-600">
-                                <i data-lucide="clock" class="h-6 w-6"></i>
-                            </div>
-                            <div class="ml-4">
-                                <p class="text-sm text-gray-500">Tempo Médio</p>
-                                <p id="tempo-medio" class="text-lg font-bold text-gray-900">--</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Área de Criar Teste -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200 mb-6">
-                    <div class="p-4 border-b border-gray-200">
-                        <h2 class="text-lg font-semibold text-gray-900">Novo Teste Automatizado</h2>
-                    </div>
-                    <div class="p-6">
-                        <form id="form-criar-teste" class="flex flex-col md:flex-row gap-4">
-                            <input type="text" id="nome-teste" name="nome-teste" placeholder="Nome do Teste (ex: Login Home)" class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
-                            <input type="url" id="url-teste" name="url-teste" placeholder="https://..." class="flex-1 rounded-md border-gray-300 shadow-sm p-2 border">
-                            <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 font-medium">
-                                <i data-lucide="play" class="inline w-4 h-4 mr-1"></i> Criar e Rodar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
-                <!-- Tabela de Testes Recentes -->
-                <div class="bg-white rounded-lg shadow-sm border border-gray-200">
-                    <div class="p-4 border-b border-gray-200">
-                        <h2 class="text-lg font-semibold text-gray-900">Histórico Recente (Dados do Supabase)</h2>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm text-gray-500">
-                            <thead class="bg-gray-50 text-xs uppercase text-gray-700">
-                                <tr>
-                                    <th class="px-6 py-3">Teste</th>
-                                    <th class="px-6 py-3">Status</th>
-                                    <th class="px-6 py-3">Data</th>
-                                    <th class="px-6 py-3 text-right">Ação</th>
-                                </tr>
-                            </thead>
-                            <!-- ID da tabela para ser preenchida pelo runTest.js -->
-                            <tbody id="testes-tabela-body" class="divide-y divide-gray-200">
-                                <tr><td colspan="4" class="text-center py-4 text-gray-500">A carregar...</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- Gráfico de Tendência (Opcional, mas dá um toque pro) -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
-                    <h2 class="text-lg font-semibold text-gray-900 mb-4">Taxa de Sucesso dos Testes</h2>
-                    <canvas id="successChart" height="100"></canvas>
-                </div>
-
-            </div>
-        </main>
-    </div>
-
-    <!-- Scripts de Lógica -->
-    <script>
-        lucide.createIcons();
-        
-        // Dados de exemplo para o gráfico 
-        const ctx = document.getElementById('successChart').getContext('2d');
-        const successChart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
-                datasets: [{
-                    label: 'Taxa de Sucesso (%)',
-                    data: [85, 88, 92, 95, 90, 98, 97],
-                    borderColor: 'rgb(37, 99, 235)', // Tailwind blue-600
-                    backgroundColor: 'rgba(37, 99, 235, 0.1)',
-                    tension: 0.4,
-                    fill: true
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: false, max: 100 }
-                }
-            }
-        });
-    </script>
-    <!-- Módulos JS: Agora importamos runTest.js para a listagem -->
-    <script type="module" defer src="js/criarTeste.js"></script>
-    <script type="module" defer src="js/executarTeste.js"></script>
-    <script type="module" defer src="js/runTest.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/tests.js"></script>
 </body>
 </html>
-
