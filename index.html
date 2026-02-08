@@ -3,74 +3,78 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>TestaIA</title>
+  <title>TestaIA — Testes Automatizados com Inteligência</title>
 
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .gradient-hero {
+      background: linear-gradient(90deg,#0f172a 0%, #0ea5a4 100%);
+    }
+  </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800">
+<body class="antialiased text-gray-800">
 
-  <!-- HERO -->
-  <section class="py-20 bg-gradient-to-r from-slate-900 to-teal-600 text-white">
-    <div class="max-w-4xl mx-auto px-6">
-      <h1 class="text-4xl font-bold">TestaIA</h1>
-      <p class="mt-4 opacity-90">
-        Testes automatizados com IA — simples e confiáveis.
-      </p>
-    </div>
-  </section>
+<!-- NAV -->
+<header class="bg-white shadow-sm">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between">
+    <span class="font-bold text-lg">TestaIA</span>
+    <a href="#contact" class="bg-teal-600 text-white px-4 py-2 rounded">
+      Acesso antecipado
+    </a>
+  </div>
+</header>
 
-  <!-- FORMULÁRIO -->
-  <section class="py-16">
-    <div class="max-w-xl mx-auto px-6">
-      <h2 class="text-2xl font-bold mb-6">Acesso antecipado</h2>
+<!-- HERO -->
+<section class="gradient-hero text-white py-24">
+  <div class="max-w-6xl mx-auto px-6">
+    <h1 class="text-5xl font-extrabold">
+      Testes automatizados com IA
+    </h1>
+    <p class="mt-6 text-lg max-w-xl">
+      Crie, execute e monitore testes inteligentes sem escrever código.
+    </p>
+  </div>
+</section>
 
-      <form id="leadForm" class="bg-white p-6 rounded-lg shadow space-y-4">
+<!-- FEATURES -->
+<section class="py-16 max-w-6xl mx-auto px-6">
+  <h2 class="text-3xl font-bold mb-8">Funcionalidades</h2>
+  <div class="grid md:grid-cols-3 gap-6">
+    <div class="border p-6 rounded">Testes sem código</div>
+    <div class="border p-6 rounded">Relatórios automáticos</div>
+    <div class="border p-6 rounded">Integração CI/CD</div>
+  </div>
+</section>
 
-        <div>
-          <label class="text-sm">Nome</label>
-          <input name="name" required class="w-full p-3 border rounded-md">
-        </div>
+<!-- CONTACT -->
+<footer id="contact" class="py-16 bg-gray-50">
+  <div class="max-w-xl mx-auto px-6">
 
-        <div>
-          <label class="text-sm">Email</label>
-          <input name="email" type="email" required class="w-full p-3 border rounded-md">
-        </div>
+    <h3 class="text-2xl font-bold mb-4">
+      Experimente o TestaIA
+    </h3>
 
-        <div>
-          <label class="text-sm">Empresa</label>
-          <input name="company" class="w-full p-3 border rounded-md">
-        </div>
+    <form id="leadForm" class="space-y-4 bg-white p-6 rounded-lg border">
 
-        <div>
-          <label class="text-sm">Mensagem</label>
-          <textarea name="message" rows="4" class="w-full p-3 border rounded-md"></textarea>
-        </div>
+      <input name="name" placeholder="Nome" class="w-full p-3 border rounded">
+      <input name="email" type="email" placeholder="Email" class="w-full p-3 border rounded">
+      <input name="company" placeholder="Empresa" class="w-full p-3 border rounded">
+      <textarea name="message" placeholder="Mensagem" class="w-full p-3 border rounded"></textarea>
 
-        <button
-          type="submit"
-          class="w-full py-3 bg-teal-600 text-white rounded-md font-medium"
-        >
-          Enviar
-        </button>
+      <button class="w-full bg-teal-600 text-white py-3 rounded">
+        Quero acesso
+      </button>
 
-        <p id="formStatus" class="text-sm text-center"></p>
-      </form>
-    </div>
-  </section>
+    </form>
+  </div>
+</footer>
 
-  <!-- SCRIPTS (ORDEM CORRETA) -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <!-- CONFIGURAÇÃO GLOBAL -->
-  <script src="js/supabase.js"></script>
-
-  <!-- LÓGICA -->
-  <script src="js/login.js"></script>
-  <script src="js/register.js"></script>
-  <script src="js/createTest.js"></script>
-  <script src="js/runTest.js"></script>
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/supabaseClient.js"></script>
+<script src="js/leads.js"></script>
 
 </body>
 </html>
